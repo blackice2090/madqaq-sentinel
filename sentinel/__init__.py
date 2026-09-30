@@ -1,0 +1,1 @@
+"""MADQAQ Sentinel core package."""
