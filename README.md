@@ -89,6 +89,22 @@ python -m apps.finalist_demo.main --confidence 0.50
 
 Details and demo script: [M3 Finalist Demo](docs/M3_FINALIST_DEMO.md)
 
+## M4.1 — Comparative evaluation (synthetic, development split)
+
+M4 is a scientific evaluation layer: a reproducible harness that measures how much the dual-channel reasoning contributes, using internal ablations and a simple transparent baseline. It adds no model and does not touch M0–M3.
+
+```bash
+python -m apps.evaluation.main run --split dev          # generate + evaluate + report (artifacts/evaluation/dev/)
+python -m apps.evaluation.main generate --split final   # frozen final manifest; NOT evaluated in M4.1
+```
+
+- Procedurally generated benchmark (300 development journeys, 1200 final), ground truth from an independent oracle - never from the conformance engine.
+- Systems: full dual-channel engine, physical-only ablation, digital-only ablation, simple procedure-check baseline.
+- Multi-label metrics, paired bootstrap intervals, and engine-evaluation latency (not end-to-end).
+- Evaluating the final split is locked in M4.1.
+
+This benchmark uses procedurally generated synthetic event sequences. It evaluates deterministic procedure-integrity reasoning, not live-camera accuracy or field performance. The physical-only and digital-only systems are internal ablations, not external commercial baselines. See [docs/M4_COMPARATIVE_EVALUATION.md](docs/M4_COMPARATIVE_EVALUATION.md).
+
 ## Scope boundary
 
 M0 does not include live camera input, detection, tracking, ReID, face recognition, production integrations, or benchmark claims. M1 (above) adds live camera input, detection and temporary tracking only. M2 adds a simulated digital channel and cross-channel fusion only. ReID, face recognition, real digital-system integrations, production deployment and benchmark claims remain out of scope.
