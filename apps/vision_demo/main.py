@@ -25,7 +25,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 
 
 def parse_args(argv: list[str] | None = None, prog: str = "python -m apps.vision_demo.main",
-               description: str | None = None) -> argparse.Namespace:
+               description: str | None = None, configure=None) -> argparse.Namespace:
     p = argparse.ArgumentParser(prog=prog, description=description or __doc__.split("\n")[0])
     p.add_argument("--camera", type=int, default=0, help="webcam index (default 0)")
     p.add_argument("--model", default=DEFAULT_MODEL, help=f"Ultralytics person model (default {DEFAULT_MODEL})")
@@ -37,6 +37,8 @@ def parse_args(argv: list[str] | None = None, prog: str = "python -m apps.vision
     p.add_argument("--zone-dwell-ms", type=float, default=d.zone_dwell_ms, help=f"ms a zone must be held before it is accepted (default {d.zone_dwell_ms:.0f})")
     p.add_argument("--smoothing-window", type=int, default=d.smoothing_window, help=f"ground-point median window in frames (default {d.smoothing_window})")
     p.add_argument("--boundary-margin", type=float, default=d.boundary_margin, help=f"normalized zone-boundary hysteresis margin (default {d.boundary_margin})")
+    if configure is not None:  # lets other apps add their own options to the same parser
+        configure(p)
     return p.parse_args(argv)
 
 

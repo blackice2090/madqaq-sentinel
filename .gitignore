@@ -13,3 +13,5 @@ venv/
 *.onnx
 *.egg-info/
 build/
+# Evidence snapshots may contain the live camera frame: keep them local
+artifacts/

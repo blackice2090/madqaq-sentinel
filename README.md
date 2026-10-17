@@ -76,6 +76,19 @@ python -m apps.dual_channel_demo.main --confidence 0.50
 
 Details: [M2 Dual-Channel Integration](docs/M2_DUAL_CHANNEL.md)
 
+## M3 — Finalist Demo (presentation)
+
+M3 is a presentation and evidence-UX layer over M0-M2: a single dashboard that shows what should happen, what the camera saw, what the (simulated) digital channel claimed, the verdict, and the exact step at fault, with an evidence timeline and a one-key evidence snapshot (PNG + JSON). No conformance, vision or coordinator logic was changed.
+
+**The digital channel remains a local simulator, not an integration with a production checkpoint system, and is labeled SIMULATED DIGITAL CHANNEL on screen. Field accuracy and comparative performance are not established.**
+
+```bash
+python -m apps.finalist_demo.main --confidence 0.50
+# keys: 1/2/3 simulated digital presets | 0 clear digital | S save evidence | R reset | Q quit
+```
+
+Details and demo script: [M3 Finalist Demo](docs/M3_FINALIST_DEMO.md)
+
 ## Scope boundary
 
 M0 does not include live camera input, detection, tracking, ReID, face recognition, production integrations, or benchmark claims. M1 (above) adds live camera input, detection and temporary tracking only. M2 adds a simulated digital channel and cross-channel fusion only. ReID, face recognition, real digital-system integrations, production deployment and benchmark claims remain out of scope.
