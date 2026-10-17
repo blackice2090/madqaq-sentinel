@@ -1,0 +1,103 @@
+{
+  "benchmark_version": "mbench-1.0",
+  "case_id_prefix": "FIN",
+  "class_distribution": {
+    "ground_truth_status": {
+      "COMPLETED": 208,
+      "UNCERTAIN": 180,
+      "VIOLATED": 812
+    },
+    "violation_labels": {
+      "CHANNEL_CONTRADICTION:B": 95,
+      "CHANNEL_CONTRADICTION:C": 94,
+      "CHANNEL_CONTRADICTION:D": 51,
+      "OMISSION:B": 144,
+      "OMISSION:C": 152,
+      "ORDER_INVERSION:B": 131,
+      "ORDER_INVERSION:C": 57,
+      "PHANTOM_COMPLETION:B": 181,
+      "PHANTOM_COMPLETION:C": 187
+    },
+    "violation_types": {
+      "CHANNEL_CONTRADICTION": 240,
+      "OMISSION": 296,
+      "ORDER_INVERSION": 188,
+      "PHANTOM_COMPLETION": 368
+    },
+    "violations_per_case": {
+      "0": 388,
+      "1": 532,
+      "2": 280
+    }
+  },
+  "composition_per_300": {
+    "boundary/uncertain_digital_only": 10,
+    "boundary/uncertain_physical_only": 10,
+    "boundary/weak_physical_midjourney": 15,
+    "boundary/weak_physical_tail": 10,
+    "core/compound_contradiction_omission": 10,
+    "core/compound_phantom_contradiction": 10,
+    "core/compound_phantom_inversion": 10,
+    "core/compound_phantom_omission": 10,
+    "core/conformant_clean": 40,
+    "core/contradiction_single": 25,
+    "core/inversion_single": 25,
+    "core/omission_double": 10,
+    "core/omission_single": 20,
+    "core/phantom_double": 10,
+    "core/phantom_single": 25,
+    "robustness/compound_contradiction_omission": 3,
+    "robustness/compound_phantom_contradiction": 2,
+    "robustness/compound_phantom_inversion": 2,
+    "robustness/compound_phantom_omission": 3,
+    "robustness/conformant_clean": 12,
+    "robustness/contradiction_single": 10,
+    "robustness/inversion_single": 10,
+    "robustness/omission_single": 8,
+    "robustness/phantom_single": 10
+  },
+  "composition_scale": 4,
+  "contains_images": false,
+  "contains_personal_data": false,
+  "dataset_file": "benchmark.jsonl",
+  "dataset_sha256": "28a3979e7e690cb0957502237f9145a24d816182196179788eaeae8738d48697",
+  "evaluation_status": "FROZEN_FINAL_NOT_EVALUATED",
+  "generator_version": "mgen-1.0",
+  "ground_truth_method": "family-by-construction labels cross-checked against sentinel.evaluation.oracle (BDEF-1); ConformanceEngine is never used to produce labels",
+  "n_cases": 1200,
+  "noise_conditions": {
+    "digital_delay": 49,
+    "digital_duplicate_delivery": 46,
+    "digital_repeated_record": 47,
+    "physical_duplicate_delivery": 55,
+    "physical_low_conf_duplicate": 46,
+    "physical_repeated_observation": 48,
+    "timestamp_jitter": 48
+  },
+  "procedure_id": "generic-checkpoint-v1",
+  "rejected_candidates": 0,
+  "scenario_families": {
+    "compound_contradiction_omission": 52,
+    "compound_phantom_contradiction": 48,
+    "compound_phantom_inversion": 48,
+    "compound_phantom_omission": 52,
+    "conformant_clean": 208,
+    "contradiction_single": 140,
+    "inversion_single": 140,
+    "omission_double": 40,
+    "omission_single": 112,
+    "phantom_double": 40,
+    "phantom_single": 140,
+    "uncertain_digital_only": 40,
+    "uncertain_physical_only": 40,
+    "weak_physical_midjourney": 60,
+    "weak_physical_tail": 40
+  },
+  "seed": 20261123,
+  "split": "final",
+  "subsets": {
+    "boundary": 180,
+    "core": 780,
+    "robustness": 240
+  }
+}

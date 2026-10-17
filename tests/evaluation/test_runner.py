@@ -70,8 +70,8 @@ def test_missing_split_asks_for_generation(tmp_path):
 
 
 # ---- the FINAL lock ------------------------------------------------------------------------------
-def test_final_evaluation_is_disabled_in_m41():
-    assert runner.FINAL_EVALUATION_ENABLED is False
+def test_final_evaluation_lock_is_open_in_m42():
+    assert runner.FINAL_EVALUATION_ENABLED is True
 
 
 def test_final_evaluation_is_blocked_by_default(final_split):
@@ -81,9 +81,8 @@ def test_final_evaluation_is_blocked_by_default(final_split):
         assert_evaluation_allowed(final_split.cases)
 
 
-def test_final_evaluation_stays_blocked_even_with_the_unlock_flag(final_split):
-    with pytest.raises(FinalEvaluationLockedError, match="M4.2"):
-        evaluate_cases(final_split.cases, final_split.manifest, unlock_final=True, resamples=5, measure_latency_=False)
+def test_unlock_flag_passes_the_guard_without_running_any_system(final_split):
+    assert_evaluation_allowed(final_split.cases, unlock_final=True)   # guard only; nothing is evaluated
 
 
 def test_a_single_final_case_mixed_into_dev_still_trips_the_lock(dev_split, final_split):

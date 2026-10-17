@@ -69,8 +69,8 @@ def test_final_split_can_be_generated_but_never_evaluated(tmp_path, capsys):
 
 
 @pytest.mark.parametrize("command", ["evaluate", "run", "report"])
-@pytest.mark.parametrize("extra", [[], ["--unlock-final-evaluation"]])
-def test_final_evaluation_commands_are_blocked(tmp_path, capsys, command, extra):
+def test_final_evaluation_commands_are_blocked_without_the_flag(tmp_path, capsys, command):
+    extra = []
     assert main(["generate", "--split", "final", "--out-dir", str(tmp_path)]) == 0
     before = sorted(p.name for p in (tmp_path / "final").iterdir())
     assert main([command, "--split", "final", "--out-dir", str(tmp_path), *extra]) == 2
@@ -101,3 +101,18 @@ def test_documentation_exists_with_required_content():
         assert phrase not in doc.lower()
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     assert "M4" in readme and "apps.evaluation.main" in readme
+
+
+def test_final_split_report_wording_is_accurate_and_keeps_the_required_text(dev_run):
+    import copy
+    from sentinel.evaluation.report import render_report
+    from sentinel.evaluation.statements import FINAL_STATUS, LATENCY_LABEL
+    summary = copy.deepcopy(json.loads((dev_run / "summary.json").read_text()))
+    summary["benchmark"]["split"] = "final"          # wording check only; no system is run on final data
+    text = render_report(summary, None)
+    assert FINAL_STATUS in text and LATENCY_LABEL in text
+    assert "has not been evaluated" not in text and "development-split results" not in text
+    for required in (SYNTHETIC_SCOPE, ABLATION_SCOPE):
+        assert required in text
+    from sentinel.evaluation.statements import KNOWN_LIMITATION
+    assert KNOWN_LIMITATION in text

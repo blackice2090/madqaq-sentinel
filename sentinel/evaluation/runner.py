@@ -18,7 +18,7 @@ from sentinel.evaluation.statements import (
     ABLATION_SCOPE, CI_SCOPE, DEV_STATUS, LATENCY_SCOPE, SYNTHETIC_SCOPE,
 )
 
-FINAL_EVALUATION_ENABLED = False      # M4.1: final evaluation is not permitted
+FINAL_EVALUATION_ENABLED = True       # M4.2: final lock opened (still needs unlock_final=True)
 BOOTSTRAP_SEED = 20261017
 BOOTSTRAP_RESAMPLES = 2000
 REFERENCE_SYSTEM = "full_dual_channel"

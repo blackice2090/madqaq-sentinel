@@ -65,7 +65,7 @@ def _evaluate(split: str, out_root: Path, args) -> Path:
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     out_root = Path(args.out_dir)
-    if args.split == "final" and args.command != "generate":
+    if args.split == "final" and args.command != "generate" and not args.unlock_final_evaluation:
         # Refuse before touching any file: nothing about the final split may be evaluated or summarised.
         print("[locked] Evaluating the FINAL split is blocked by default and is not part of M4.1. "
               "Only `generate --split final` is available.", file=sys.stderr)

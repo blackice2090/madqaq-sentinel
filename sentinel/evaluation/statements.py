@@ -13,6 +13,11 @@ LATENCY_SCOPE = ("Latency is engine evaluation latency only: it measures the tim
 DEV_STATUS = ("This report covers the DEVELOPMENT split only. The FINAL split has been generated but no system has been "
               "evaluated on it.")
 
+FINAL_STATUS = ("This report covers the FINAL split: the frozen benchmark (seed 20261123), evaluated once with the frozen M4.1 "
+                "systems and metric definitions. No engine, oracle, generator, threshold or case was changed after the results were observed.")
+LATENCY_LABEL = ("Engine evaluation latency only. This excludes camera capture, YOLO inference, tracking, UI rendering, "
+                 "and external-system latency.")
+
 FORBIDDEN_PHRASES = ("proves superiority", "outperforms all", "production ready", "production-ready")
 
 KNOWN_LIMITATION = (

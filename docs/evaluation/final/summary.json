@@ -1,0 +1,2091 @@
+{
+  "benchmark": {
+    "benchmark_version": "mbench-1.0",
+    "class_distribution": {
+      "ground_truth_status": {
+        "COMPLETED": 208,
+        "UNCERTAIN": 180,
+        "VIOLATED": 812
+      },
+      "violation_labels": {
+        "CHANNEL_CONTRADICTION:B": 95,
+        "CHANNEL_CONTRADICTION:C": 94,
+        "CHANNEL_CONTRADICTION:D": 51,
+        "OMISSION:B": 144,
+        "OMISSION:C": 152,
+        "ORDER_INVERSION:B": 131,
+        "ORDER_INVERSION:C": 57,
+        "PHANTOM_COMPLETION:B": 181,
+        "PHANTOM_COMPLETION:C": 187
+      },
+      "violation_types": {
+        "CHANNEL_CONTRADICTION": 240,
+        "OMISSION": 296,
+        "ORDER_INVERSION": 188,
+        "PHANTOM_COMPLETION": 368
+      },
+      "violations_per_case": {
+        "0": 388,
+        "1": 532,
+        "2": 280
+      }
+    },
+    "composition_per_300": {
+      "boundary/uncertain_digital_only": 10,
+      "boundary/uncertain_physical_only": 10,
+      "boundary/weak_physical_midjourney": 15,
+      "boundary/weak_physical_tail": 10,
+      "core/compound_contradiction_omission": 10,
+      "core/compound_phantom_contradiction": 10,
+      "core/compound_phantom_inversion": 10,
+      "core/compound_phantom_omission": 10,
+      "core/conformant_clean": 40,
+      "core/contradiction_single": 25,
+      "core/inversion_single": 25,
+      "core/omission_double": 10,
+      "core/omission_single": 20,
+      "core/phantom_double": 10,
+      "core/phantom_single": 25,
+      "robustness/compound_contradiction_omission": 3,
+      "robustness/compound_phantom_contradiction": 2,
+      "robustness/compound_phantom_inversion": 2,
+      "robustness/compound_phantom_omission": 3,
+      "robustness/conformant_clean": 12,
+      "robustness/contradiction_single": 10,
+      "robustness/inversion_single": 10,
+      "robustness/omission_single": 8,
+      "robustness/phantom_single": 10
+    },
+    "composition_scale": 4,
+    "dataset_sha256": "28a3979e7e690cb0957502237f9145a24d816182196179788eaeae8738d48697",
+    "generator_version": "mgen-1.0",
+    "n_cases": 1200,
+    "noise_conditions": {
+      "digital_delay": 49,
+      "digital_duplicate_delivery": 46,
+      "digital_repeated_record": 47,
+      "physical_duplicate_delivery": 55,
+      "physical_low_conf_duplicate": 46,
+      "physical_repeated_observation": 48,
+      "timestamp_jitter": 48
+    },
+    "rejected_candidates": 0,
+    "scenario_families": {
+      "compound_contradiction_omission": 52,
+      "compound_phantom_contradiction": 48,
+      "compound_phantom_inversion": 48,
+      "compound_phantom_omission": 52,
+      "conformant_clean": 208,
+      "contradiction_single": 140,
+      "inversion_single": 140,
+      "omission_double": 40,
+      "omission_single": 112,
+      "phantom_double": 40,
+      "phantom_single": 140,
+      "uncertain_digital_only": 40,
+      "uncertain_physical_only": 40,
+      "weak_physical_midjourney": 60,
+      "weak_physical_tail": 40
+    },
+    "seed": 20261123,
+    "split": "final",
+    "subsets": {
+      "boundary": 180,
+      "core": 780,
+      "robustness": 240
+    }
+  },
+  "bootstrap": {
+    "intervals": {
+      "digital_only_ablation": {
+        "exact_set_accuracy": {
+          "ci_high": 0.5958333333333333,
+          "ci_low": 0.5391666666666667,
+          "point": 0.5666666666666667
+        },
+        "macro_f1": {
+          "ci_high": 0.4469309462915601,
+          "ci_low": 0.43131868131868134,
+          "point": 0.43950064020486557
+        },
+        "status_accuracy": {
+          "ci_high": 0.6283333333333333,
+          "ci_low": 0.5733333333333334,
+          "point": 0.6008333333333333
+        }
+      },
+      "full_dual_channel": {
+        "exact_set_accuracy": {
+          "ci_high": 0.9625,
+          "ci_low": 0.9375,
+          "point": 0.95
+        },
+        "macro_f1": {
+          "ci_high": 0.9858722358722358,
+          "ci_low": 0.9760812581913499,
+          "point": 0.9811557788944724
+        },
+        "status_accuracy": {
+          "ci_high": 0.9625,
+          "ci_low": 0.9375,
+          "point": 0.95
+        }
+      },
+      "physical_only_ablation": {
+        "exact_set_accuracy": {
+          "ci_high": 0.545,
+          "ci_low": 0.48833333333333334,
+          "point": 0.5166666666666667
+        },
+        "macro_f1": {
+          "ci_high": 0.4044943820224719,
+          "ci_low": 0.38583815028901736,
+          "point": 0.3950980392156863
+        },
+        "status_accuracy": {
+          "ci_high": 0.6541666666666667,
+          "ci_low": 0.5983333333333334,
+          "point": 0.6266666666666667
+        }
+      },
+      "simple_procedure_check": {
+        "exact_set_accuracy": {
+          "ci_high": 0.5958333333333333,
+          "ci_low": 0.5391666666666667,
+          "point": 0.5666666666666667
+        },
+        "macro_f1": {
+          "ci_high": 0.5,
+          "ci_low": 0.5,
+          "point": 0.5
+        },
+        "status_accuracy": {
+          "ci_high": 0.5708333333333333,
+          "ci_low": 0.5141666666666667,
+          "point": 0.5433333333333333
+        }
+      }
+    },
+    "level": 0.95,
+    "method": "percentile bootstrap over cases (resampling with replacement), shared resamples across systems",
+    "paired_delta_reference_minus_system": {
+      "deltas": {
+        "digital_only_ablation": {
+          "exact_set_accuracy": {
+            "ci_high": 0.41500000000000004,
+            "ci_low": 0.35,
+            "point": 0.3833333333333333
+          },
+          "macro_f1": {
+            "ci_high": 0.551370645445886,
+            "ci_low": 0.5326086956521738,
+            "point": 0.5416551386896068
+          },
+          "status_accuracy": {
+            "ci_high": 0.38250000000000006,
+            "ci_low": 0.31666666666666665,
+            "point": 0.3491666666666666
+          }
+        },
+        "physical_only_ablation": {
+          "exact_set_accuracy": {
+            "ci_high": 0.4608333333333334,
+            "ci_low": 0.4041666666666667,
+            "point": 0.43333333333333324
+          },
+          "macro_f1": {
+            "ci_high": 0.5965894465894466,
+            "ci_low": 0.5754839098307989,
+            "point": 0.586057739678786
+          },
+          "status_accuracy": {
+            "ci_high": 0.35083333333333333,
+            "ci_low": 0.2975000000000001,
+            "point": 0.32333333333333325
+          }
+        },
+        "simple_procedure_check": {
+          "exact_set_accuracy": {
+            "ci_high": 0.41500000000000004,
+            "ci_low": 0.35,
+            "point": 0.3833333333333333
+          },
+          "macro_f1": {
+            "ci_high": 0.4858722358722358,
+            "ci_low": 0.47608125819134994,
+            "point": 0.48115577889447236
+          },
+          "status_accuracy": {
+            "ci_high": 0.43499999999999994,
+            "ci_low": 0.37916666666666665,
+            "point": 0.4066666666666666
+          }
+        }
+      },
+      "reference": "full_dual_channel"
+    },
+    "resamples": 2000,
+    "scope": "statistical intervals over this synthetic benchmark sample, not field-performance confidence intervals",
+    "seed": 20261017
+  },
+  "complementarity_exact_match": {
+    "digital_only_ablation": {
+      "both_exact": 620,
+      "neither_exact": 0,
+      "other_only_exact": 60,
+      "reference_only_exact": 520
+    },
+    "physical_only_ablation": {
+      "both_exact": 620,
+      "neither_exact": 60,
+      "other_only_exact": 0,
+      "reference_only_exact": 520
+    },
+    "simple_procedure_check": {
+      "both_exact": 620,
+      "neither_exact": 0,
+      "other_only_exact": 60,
+      "reference_only_exact": 520
+    }
+  },
+  "conventions": {
+    "zero_division": "precision/recall are undefined (null) when their denominator is 0; F1 = 2TP/(2TP+FP+FN) is undefined only when that denominator is 0; macro-F1 averages the defined per-type F1 values; rates with a zero denominator are null."
+  },
+  "cross_channel_benefit_by_type": {
+    "CHANNEL_CONTRADICTION": {
+      "by_system": {
+        "digital_only_ablation": {
+          "f1": 0.0,
+          "fn": 240,
+          "fp": 0,
+          "precision": null,
+          "recall": 0.0,
+          "tp": 0
+        },
+        "full_dual_channel": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 240
+        },
+        "physical_only_ablation": {
+          "f1": 0.0,
+          "fn": 240,
+          "fp": 0,
+          "precision": null,
+          "recall": 0.0,
+          "tp": 0
+        },
+        "simple_procedure_check": {
+          "f1": 0.0,
+          "fn": 240,
+          "fp": 0,
+          "precision": null,
+          "recall": 0.0,
+          "tp": 0
+        }
+      },
+      "recall_gain_over_best_single_channel": 1.0,
+      "truth_labels": 240
+    },
+    "OMISSION": {
+      "by_system": {
+        "digital_only_ablation": {
+          "f1": 0.7580025608194623,
+          "fn": 0,
+          "fp": 189,
+          "precision": 0.6103092783505155,
+          "recall": 1.0,
+          "tp": 296
+        },
+        "full_dual_channel": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 296
+        },
+        "physical_only_ablation": {
+          "f1": 0.5803921568627451,
+          "fn": 0,
+          "fp": 428,
+          "precision": 0.4088397790055249,
+          "recall": 1.0,
+          "tp": 296
+        },
+        "simple_procedure_check": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 296
+        }
+      },
+      "recall_gain_over_best_single_channel": 0.0,
+      "truth_labels": 296
+    },
+    "ORDER_INVERSION": {
+      "by_system": {
+        "digital_only_ablation": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 188
+        },
+        "full_dual_channel": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 188
+        },
+        "physical_only_ablation": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 188
+        },
+        "simple_procedure_check": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 188
+        }
+      },
+      "recall_gain_over_best_single_channel": 0.0,
+      "truth_labels": 188
+    },
+    "PHANTOM_COMPLETION": {
+      "by_system": {
+        "digital_only_ablation": {
+          "f1": 0.0,
+          "fn": 368,
+          "fp": 0,
+          "precision": null,
+          "recall": 0.0,
+          "tp": 0
+        },
+        "full_dual_channel": {
+          "f1": 0.9246231155778895,
+          "fn": 0,
+          "fp": 60,
+          "precision": 0.8598130841121495,
+          "recall": 1.0,
+          "tp": 368
+        },
+        "physical_only_ablation": {
+          "f1": 0.0,
+          "fn": 368,
+          "fp": 0,
+          "precision": null,
+          "recall": 0.0,
+          "tp": 0
+        },
+        "simple_procedure_check": {
+          "f1": 0.0,
+          "fn": 368,
+          "fp": 0,
+          "precision": null,
+          "recall": 0.0,
+          "tp": 0
+        }
+      },
+      "recall_gain_over_best_single_channel": 1.0,
+      "truth_labels": 368
+    }
+  },
+  "engine_version": "m0.1 (ConformanceEngine, unmodified)",
+  "family_breakdown": [
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "uncertain_digital_only",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "boundary",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "uncertain_physical_only",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "boundary",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 60,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 0,
+      "false_positive_labels": 60,
+      "family": "weak_physical_midjourney",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "boundary",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "weak_physical_tail",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "boundary",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "compound_contradiction_omission",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "compound_phantom_contradiction",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "compound_phantom_inversion",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "compound_phantom_omission",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 160,
+      "exact_match_rate": 1.0,
+      "exact_matches": 160,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "conformant_clean",
+      "status_accuracy": 1.0,
+      "status_correct": 160,
+      "subset": "core",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 100,
+      "exact_match_rate": 1.0,
+      "exact_matches": 100,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "contradiction_single",
+      "status_accuracy": 1.0,
+      "status_correct": 100,
+      "subset": "core",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 100
+    },
+    {
+      "cases": 100,
+      "exact_match_rate": 1.0,
+      "exact_matches": 100,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "inversion_single",
+      "status_accuracy": 1.0,
+      "status_correct": 100,
+      "subset": "core",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 100
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "omission_double",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 80,
+      "exact_match_rate": 1.0,
+      "exact_matches": 80,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "omission_single",
+      "status_accuracy": 1.0,
+      "status_correct": 80,
+      "subset": "core",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "phantom_double",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 100,
+      "exact_match_rate": 1.0,
+      "exact_matches": 100,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "phantom_single",
+      "status_accuracy": 1.0,
+      "status_correct": 100,
+      "subset": "core",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 100
+    },
+    {
+      "cases": 12,
+      "exact_match_rate": 1.0,
+      "exact_matches": 12,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "compound_contradiction_omission",
+      "status_accuracy": 1.0,
+      "status_correct": 12,
+      "subset": "robustness",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 24
+    },
+    {
+      "cases": 8,
+      "exact_match_rate": 1.0,
+      "exact_matches": 8,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "compound_phantom_contradiction",
+      "status_accuracy": 1.0,
+      "status_correct": 8,
+      "subset": "robustness",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 16
+    },
+    {
+      "cases": 8,
+      "exact_match_rate": 1.0,
+      "exact_matches": 8,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "compound_phantom_inversion",
+      "status_accuracy": 1.0,
+      "status_correct": 8,
+      "subset": "robustness",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 16
+    },
+    {
+      "cases": 12,
+      "exact_match_rate": 1.0,
+      "exact_matches": 12,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "compound_phantom_omission",
+      "status_accuracy": 1.0,
+      "status_correct": 12,
+      "subset": "robustness",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 24
+    },
+    {
+      "cases": 48,
+      "exact_match_rate": 1.0,
+      "exact_matches": 48,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "conformant_clean",
+      "status_accuracy": 1.0,
+      "status_correct": 48,
+      "subset": "robustness",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "contradiction_single",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "robustness",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 40
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "inversion_single",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "robustness",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 40
+    },
+    {
+      "cases": 32,
+      "exact_match_rate": 1.0,
+      "exact_matches": 32,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "omission_single",
+      "status_accuracy": 1.0,
+      "status_correct": 32,
+      "subset": "robustness",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 32
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "phantom_single",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "robustness",
+      "system_id": "full_dual_channel",
+      "truth_label_count": 40
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "uncertain_digital_only",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "boundary",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "uncertain_physical_only",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "boundary",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 60,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 0,
+      "false_positive_labels": 60,
+      "family": "weak_physical_midjourney",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "boundary",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "weak_physical_tail",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "boundary",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 40,
+      "false_positive_labels": 0,
+      "family": "compound_contradiction_omission",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 80,
+      "false_positive_labels": 40,
+      "family": "compound_phantom_contradiction",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 40,
+      "false_positive_labels": 40,
+      "family": "compound_phantom_inversion",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 40,
+      "false_positive_labels": 40,
+      "family": "compound_phantom_omission",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 160,
+      "exact_match_rate": 1.0,
+      "exact_matches": 160,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "conformant_clean",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "core",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 100,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 100,
+      "false_positive_labels": 0,
+      "family": "contradiction_single",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "core",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 100
+    },
+    {
+      "cases": 100,
+      "exact_match_rate": 1.0,
+      "exact_matches": 100,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "inversion_single",
+      "status_accuracy": 1.0,
+      "status_correct": 100,
+      "subset": "core",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 100
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "omission_double",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 80,
+      "exact_match_rate": 1.0,
+      "exact_matches": 80,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "omission_single",
+      "status_accuracy": 1.0,
+      "status_correct": 80,
+      "subset": "core",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 80,
+      "false_positive_labels": 80,
+      "family": "phantom_double",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 100,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 100,
+      "false_positive_labels": 100,
+      "family": "phantom_single",
+      "status_accuracy": 1.0,
+      "status_correct": 100,
+      "subset": "core",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 100
+    },
+    {
+      "cases": 12,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 12,
+      "false_positive_labels": 0,
+      "family": "compound_contradiction_omission",
+      "status_accuracy": 1.0,
+      "status_correct": 12,
+      "subset": "robustness",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 24
+    },
+    {
+      "cases": 8,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 16,
+      "false_positive_labels": 8,
+      "family": "compound_phantom_contradiction",
+      "status_accuracy": 1.0,
+      "status_correct": 8,
+      "subset": "robustness",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 16
+    },
+    {
+      "cases": 8,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 8,
+      "false_positive_labels": 8,
+      "family": "compound_phantom_inversion",
+      "status_accuracy": 1.0,
+      "status_correct": 8,
+      "subset": "robustness",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 16
+    },
+    {
+      "cases": 12,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 12,
+      "false_positive_labels": 12,
+      "family": "compound_phantom_omission",
+      "status_accuracy": 1.0,
+      "status_correct": 12,
+      "subset": "robustness",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 24
+    },
+    {
+      "cases": 48,
+      "exact_match_rate": 1.0,
+      "exact_matches": 48,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "conformant_clean",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "robustness",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 40,
+      "false_positive_labels": 0,
+      "family": "contradiction_single",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "robustness",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 40
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "inversion_single",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "robustness",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 40
+    },
+    {
+      "cases": 32,
+      "exact_match_rate": 1.0,
+      "exact_matches": 32,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "omission_single",
+      "status_accuracy": 1.0,
+      "status_correct": 32,
+      "subset": "robustness",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 32
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 40,
+      "false_positive_labels": 40,
+      "family": "phantom_single",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "robustness",
+      "system_id": "physical_only_ablation",
+      "truth_label_count": 40
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "uncertain_digital_only",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "boundary",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "uncertain_physical_only",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "boundary",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 60,
+      "exact_match_rate": 1.0,
+      "exact_matches": 60,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "weak_physical_midjourney",
+      "status_accuracy": 1.0,
+      "status_correct": 60,
+      "subset": "boundary",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "weak_physical_tail",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "boundary",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 40,
+      "false_positive_labels": 40,
+      "family": "compound_contradiction_omission",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 80,
+      "false_positive_labels": 40,
+      "family": "compound_phantom_contradiction",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 40,
+      "false_positive_labels": 0,
+      "family": "compound_phantom_inversion",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 40,
+      "false_positive_labels": 0,
+      "family": "compound_phantom_omission",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 160,
+      "exact_match_rate": 1.0,
+      "exact_matches": 160,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "conformant_clean",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "core",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 100,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 100,
+      "false_positive_labels": 67,
+      "family": "contradiction_single",
+      "status_accuracy": 0.67,
+      "status_correct": 67,
+      "subset": "core",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 100
+    },
+    {
+      "cases": 100,
+      "exact_match_rate": 1.0,
+      "exact_matches": 100,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "inversion_single",
+      "status_accuracy": 1.0,
+      "status_correct": 100,
+      "subset": "core",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 100
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "omission_double",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 80,
+      "exact_match_rate": 1.0,
+      "exact_matches": 80,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "omission_single",
+      "status_accuracy": 1.0,
+      "status_correct": 80,
+      "subset": "core",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 80,
+      "false_positive_labels": 0,
+      "family": "phantom_double",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "core",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 100,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 100,
+      "false_positive_labels": 0,
+      "family": "phantom_single",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "core",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 100
+    },
+    {
+      "cases": 12,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 12,
+      "false_positive_labels": 12,
+      "family": "compound_contradiction_omission",
+      "status_accuracy": 1.0,
+      "status_correct": 12,
+      "subset": "robustness",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 24
+    },
+    {
+      "cases": 8,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 16,
+      "false_positive_labels": 8,
+      "family": "compound_phantom_contradiction",
+      "status_accuracy": 1.0,
+      "status_correct": 8,
+      "subset": "robustness",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 16
+    },
+    {
+      "cases": 8,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 8,
+      "false_positive_labels": 0,
+      "family": "compound_phantom_inversion",
+      "status_accuracy": 1.0,
+      "status_correct": 8,
+      "subset": "robustness",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 16
+    },
+    {
+      "cases": 12,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 12,
+      "false_positive_labels": 0,
+      "family": "compound_phantom_omission",
+      "status_accuracy": 1.0,
+      "status_correct": 12,
+      "subset": "robustness",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 24
+    },
+    {
+      "cases": 48,
+      "exact_match_rate": 1.0,
+      "exact_matches": 48,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "conformant_clean",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "robustness",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 40,
+      "false_positive_labels": 22,
+      "family": "contradiction_single",
+      "status_accuracy": 0.55,
+      "status_correct": 22,
+      "subset": "robustness",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 40
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "inversion_single",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "robustness",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 40
+    },
+    {
+      "cases": 32,
+      "exact_match_rate": 1.0,
+      "exact_matches": 32,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "omission_single",
+      "status_accuracy": 1.0,
+      "status_correct": 32,
+      "subset": "robustness",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 32
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 40,
+      "false_positive_labels": 0,
+      "family": "phantom_single",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "robustness",
+      "system_id": "digital_only_ablation",
+      "truth_label_count": 40
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "uncertain_digital_only",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "boundary",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "uncertain_physical_only",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "boundary",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 60,
+      "exact_match_rate": 1.0,
+      "exact_matches": 60,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "weak_physical_midjourney",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "boundary",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "weak_physical_tail",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "boundary",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 40,
+      "false_positive_labels": 0,
+      "family": "compound_contradiction_omission",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 80,
+      "false_positive_labels": 0,
+      "family": "compound_phantom_contradiction",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "core",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 40,
+      "false_positive_labels": 0,
+      "family": "compound_phantom_inversion",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 40,
+      "false_positive_labels": 0,
+      "family": "compound_phantom_omission",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 160,
+      "exact_match_rate": 1.0,
+      "exact_matches": 160,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "conformant_clean",
+      "status_accuracy": 1.0,
+      "status_correct": 160,
+      "subset": "core",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 100,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 100,
+      "false_positive_labels": 0,
+      "family": "contradiction_single",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "core",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 100
+    },
+    {
+      "cases": 100,
+      "exact_match_rate": 1.0,
+      "exact_matches": 100,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "inversion_single",
+      "status_accuracy": 1.0,
+      "status_correct": 100,
+      "subset": "core",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 100
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "omission_double",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "core",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 80,
+      "exact_match_rate": 1.0,
+      "exact_matches": 80,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "omission_single",
+      "status_accuracy": 1.0,
+      "status_correct": 80,
+      "subset": "core",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 80,
+      "false_positive_labels": 0,
+      "family": "phantom_double",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "core",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 80
+    },
+    {
+      "cases": 100,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 100,
+      "false_positive_labels": 0,
+      "family": "phantom_single",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "core",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 100
+    },
+    {
+      "cases": 12,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 12,
+      "false_positive_labels": 0,
+      "family": "compound_contradiction_omission",
+      "status_accuracy": 1.0,
+      "status_correct": 12,
+      "subset": "robustness",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 24
+    },
+    {
+      "cases": 8,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 16,
+      "false_positive_labels": 0,
+      "family": "compound_phantom_contradiction",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "robustness",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 16
+    },
+    {
+      "cases": 8,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 8,
+      "false_positive_labels": 0,
+      "family": "compound_phantom_inversion",
+      "status_accuracy": 1.0,
+      "status_correct": 8,
+      "subset": "robustness",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 16
+    },
+    {
+      "cases": 12,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 12,
+      "false_positive_labels": 0,
+      "family": "compound_phantom_omission",
+      "status_accuracy": 1.0,
+      "status_correct": 12,
+      "subset": "robustness",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 24
+    },
+    {
+      "cases": 48,
+      "exact_match_rate": 1.0,
+      "exact_matches": 48,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "conformant_clean",
+      "status_accuracy": 1.0,
+      "status_correct": 48,
+      "subset": "robustness",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 0
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 40,
+      "false_positive_labels": 0,
+      "family": "contradiction_single",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "robustness",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 40
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 1.0,
+      "exact_matches": 40,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "inversion_single",
+      "status_accuracy": 1.0,
+      "status_correct": 40,
+      "subset": "robustness",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 40
+    },
+    {
+      "cases": 32,
+      "exact_match_rate": 1.0,
+      "exact_matches": 32,
+      "false_negative_labels": 0,
+      "false_positive_labels": 0,
+      "family": "omission_single",
+      "status_accuracy": 1.0,
+      "status_correct": 32,
+      "subset": "robustness",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 32
+    },
+    {
+      "cases": 40,
+      "exact_match_rate": 0.0,
+      "exact_matches": 0,
+      "false_negative_labels": 40,
+      "false_positive_labels": 0,
+      "family": "phantom_single",
+      "status_accuracy": 0.0,
+      "status_correct": 0,
+      "subset": "robustness",
+      "system_id": "simple_procedure_check",
+      "truth_label_count": 40
+    }
+  ],
+  "milestone": "M4.1",
+  "scope_statements": {
+    "ablations": "The physical-only and digital-only systems are internal ablations, not external commercial baselines.",
+    "intervals": "Confidence intervals are bootstrap statistical intervals over this synthetic benchmark sample; they are not field-performance confidence intervals.",
+    "latency": "Latency is engine evaluation latency only: it measures the time to evaluate evidence that already exists as events and excludes camera capture, YOLO detection, tracking and UI rendering. It is not end-to-end latency and it is specific to the machine that measured it.",
+    "split_status": "This report covers the DEVELOPMENT split only. The FINAL split has been generated but no system has been evaluated on it.",
+    "synthetic": "This benchmark uses procedurally generated synthetic event sequences. It evaluates deterministic procedure-integrity reasoning, not live-camera accuracy or field performance."
+  },
+  "simple_baseline_rules": [
+    "A step appears if a physical STEP_OBSERVED (confidence >= 0.50) or a digital STEP_COMPLETED names it; STEP_FAILED never counts.",
+    "OMISSION:X is raised for every required step X that appears in neither channel.",
+    "ORDER_INVERSION:X is raised for every step X that occurs after a higher-order step within one channel's collapsed time-ordered sequence; channels are never merged.",
+    "Status is VIOLATED if any label was raised, otherwise COMPLETED; there is no UNCERTAIN.",
+    "No cross-channel contradiction and no unsupported-digital-completion (phantom) reasoning."
+  ],
+  "subset_metrics": {
+    "boundary": {
+      "digital_only_ablation": {
+        "exact_set_accuracy": 1.0,
+        "fnr_violated": null,
+        "fpr_violation_free": 0.0,
+        "macro_f1": null,
+        "micro_f1": null,
+        "status_accuracy": 0.7777777777777778,
+        "total_cases": 180
+      },
+      "full_dual_channel": {
+        "exact_set_accuracy": 0.6666666666666666,
+        "fnr_violated": null,
+        "fpr_violation_free": 0.3333333333333333,
+        "macro_f1": 0.0,
+        "micro_f1": 0.0,
+        "status_accuracy": 0.6666666666666666,
+        "total_cases": 180
+      },
+      "physical_only_ablation": {
+        "exact_set_accuracy": 0.6666666666666666,
+        "fnr_violated": null,
+        "fpr_violation_free": 0.3333333333333333,
+        "macro_f1": 0.0,
+        "micro_f1": 0.0,
+        "status_accuracy": 0.4444444444444444,
+        "total_cases": 180
+      },
+      "simple_procedure_check": {
+        "exact_set_accuracy": 1.0,
+        "fnr_violated": null,
+        "fpr_violation_free": 0.0,
+        "macro_f1": null,
+        "micro_f1": null,
+        "status_accuracy": 0.0,
+        "total_cases": 180
+      }
+    },
+    "core": {
+      "digital_only_ablation": {
+        "exact_set_accuracy": 0.48717948717948717,
+        "fnr_violated": 0.27903225806451615,
+        "fpr_violation_free": 0.0,
+        "macro_f1": 0.44138755980861244,
+        "micro_f1": 0.547945205479452,
+        "status_accuracy": 0.573076923076923,
+        "total_cases": 780
+      },
+      "full_dual_channel": {
+        "exact_set_accuracy": 1.0,
+        "fnr_violated": 0.0,
+        "fpr_violation_free": 0.0,
+        "macro_f1": 1.0,
+        "micro_f1": 1.0,
+        "status_accuracy": 1.0,
+        "total_cases": 780
+      },
+      "physical_only_ablation": {
+        "exact_set_accuracy": 0.48717948717948717,
+        "fnr_violated": 0.16129032258064516,
+        "fpr_violation_free": 0.0,
+        "macro_f1": 0.40384615384615385,
+        "micro_f1": 0.4935064935064935,
+        "status_accuracy": 0.6666666666666666,
+        "total_cases": 780
+      },
+      "simple_procedure_check": {
+        "exact_set_accuracy": 0.48717948717948717,
+        "fnr_violated": 0.45161290322580644,
+        "fpr_violation_free": 0.0,
+        "macro_f1": 0.5,
+        "micro_f1": 0.6129032258064516,
+        "status_accuracy": 0.6410256410256411,
+        "total_cases": 780
+      }
+    },
+    "robustness": {
+      "digital_only_ablation": {
+        "exact_set_accuracy": 0.5,
+        "fnr_violated": 0.3020833333333333,
+        "fpr_violation_free": 0.0,
+        "macro_f1": 0.4318181818181818,
+        "micro_f1": 0.5502645502645502,
+        "status_accuracy": 0.5583333333333333,
+        "total_cases": 240
+      },
+      "full_dual_channel": {
+        "exact_set_accuracy": 1.0,
+        "fnr_violated": 0.0,
+        "fpr_violation_free": 0.0,
+        "macro_f1": 1.0,
+        "micro_f1": 1.0,
+        "status_accuracy": 1.0,
+        "total_cases": 240
+      },
+      "physical_only_ablation": {
+        "exact_set_accuracy": 0.5,
+        "fnr_violated": 0.20833333333333334,
+        "fpr_violation_free": 0.0,
+        "macro_f1": 0.40555555555555556,
+        "micro_f1": 0.5148514851485149,
+        "status_accuracy": 0.6333333333333333,
+        "total_cases": 240
+      },
+      "simple_procedure_check": {
+        "exact_set_accuracy": 0.5,
+        "fnr_violated": 0.4583333333333333,
+        "fpr_violation_free": 0.0,
+        "macro_f1": 0.5,
+        "micro_f1": 0.6190476190476191,
+        "status_accuracy": 0.6333333333333333,
+        "total_cases": 240
+      }
+    }
+  },
+  "summary_schema": "madqaq-sentinel-eval/1",
+  "systems": {
+    "digital_only_ablation": {
+      "channels": [
+        "DIGITAL"
+      ],
+      "description": "The same ConformanceEngine with the physical channel removed: it receives digital evidence only (an internal ablation, not an external product).",
+      "display_name": "Digital-only ablation",
+      "metrics": {
+        "conformant_cases": 208,
+        "conformant_false_alarms": 0,
+        "exact_set_accuracy": 0.5666666666666667,
+        "fnr_violated": 0.28448275862068967,
+        "fpr_conformant": 0.0,
+        "fpr_violation_free": 0.0,
+        "ground_truth_uncertain_rate": 0.15,
+        "label_miss_rate": 0.5567765567765568,
+        "macro_f1": 0.43950064020486557,
+        "macro_f1_types_counted": 4,
+        "micro_f1": 0.5484419263456091,
+        "status_accuracy": 0.6008333333333333,
+        "total_cases": 1200,
+        "uncertain_rate": 0.4825,
+        "violated_cases": 812,
+        "violated_missed_entirely": 231,
+        "violation_free_cases": 388,
+        "violation_free_false_alarms": 0
+      },
+      "per_violation_type": {
+        "CHANNEL_CONTRADICTION": {
+          "f1": 0.0,
+          "fn": 240,
+          "fp": 0,
+          "precision": null,
+          "recall": 0.0,
+          "tp": 0,
+          "truth_labels": 240
+        },
+        "MICRO_ALL": {
+          "f1": 0.5484419263456091,
+          "fn": 608,
+          "fp": 189,
+          "precision": 0.7191679049034175,
+          "recall": 0.4432234432234432,
+          "tp": 484,
+          "truth_labels": 1092
+        },
+        "OMISSION": {
+          "f1": 0.7580025608194623,
+          "fn": 0,
+          "fp": 189,
+          "precision": 0.6103092783505155,
+          "recall": 1.0,
+          "tp": 296,
+          "truth_labels": 296
+        },
+        "ORDER_INVERSION": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 188,
+          "truth_labels": 188
+        },
+        "PHANTOM_COMPLETION": {
+          "f1": 0.0,
+          "fn": 368,
+          "fp": 0,
+          "precision": null,
+          "recall": 0.0,
+          "tp": 0,
+          "truth_labels": 368
+        }
+      }
+    },
+    "full_dual_channel": {
+      "channels": [
+        "DIGITAL",
+        "PHYSICAL"
+      ],
+      "description": "The unmodified M0 ConformanceEngine given both physical and digital evidence.",
+      "display_name": "MADQAQ full dual-channel",
+      "metrics": {
+        "conformant_cases": 208,
+        "conformant_false_alarms": 0,
+        "exact_set_accuracy": 0.95,
+        "fnr_violated": 0.0,
+        "fpr_conformant": 0.0,
+        "fpr_violation_free": 0.15463917525773196,
+        "ground_truth_uncertain_rate": 0.15,
+        "label_miss_rate": 0.0,
+        "macro_f1": 0.9811557788944724,
+        "macro_f1_types_counted": 4,
+        "micro_f1": 0.9732620320855615,
+        "status_accuracy": 0.95,
+        "total_cases": 1200,
+        "uncertain_rate": 0.1,
+        "violated_cases": 812,
+        "violated_missed_entirely": 0,
+        "violation_free_cases": 388,
+        "violation_free_false_alarms": 60
+      },
+      "per_violation_type": {
+        "CHANNEL_CONTRADICTION": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 240,
+          "truth_labels": 240
+        },
+        "MICRO_ALL": {
+          "f1": 0.9732620320855615,
+          "fn": 0,
+          "fp": 60,
+          "precision": 0.9479166666666666,
+          "recall": 1.0,
+          "tp": 1092,
+          "truth_labels": 1092
+        },
+        "OMISSION": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 296,
+          "truth_labels": 296
+        },
+        "ORDER_INVERSION": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 188,
+          "truth_labels": 188
+        },
+        "PHANTOM_COMPLETION": {
+          "f1": 0.9246231155778895,
+          "fn": 0,
+          "fp": 60,
+          "precision": 0.8598130841121495,
+          "recall": 1.0,
+          "tp": 368,
+          "truth_labels": 368
+        }
+      }
+    },
+    "physical_only_ablation": {
+      "channels": [
+        "PHYSICAL"
+      ],
+      "description": "The same ConformanceEngine with the digital channel removed: it receives physical evidence only (an internal ablation, not an external product).",
+      "display_name": "Physical-only ablation",
+      "metrics": {
+        "conformant_cases": 208,
+        "conformant_false_alarms": 0,
+        "exact_set_accuracy": 0.5166666666666667,
+        "fnr_violated": 0.1724137931034483,
+        "fpr_conformant": 0.0,
+        "fpr_violation_free": 0.15463917525773196,
+        "ground_truth_uncertain_rate": 0.15,
+        "label_miss_rate": 0.5567765567765568,
+        "macro_f1": 0.3950980392156863,
+        "macro_f1_types_counted": 4,
+        "micro_f1": 0.48303393213572854,
+        "status_accuracy": 0.6266666666666667,
+        "total_cases": 1200,
+        "uncertain_rate": 0.3566666666666667,
+        "violated_cases": 812,
+        "violated_missed_entirely": 140,
+        "violation_free_cases": 388,
+        "violation_free_false_alarms": 60
+      },
+      "per_violation_type": {
+        "CHANNEL_CONTRADICTION": {
+          "f1": 0.0,
+          "fn": 240,
+          "fp": 0,
+          "precision": null,
+          "recall": 0.0,
+          "tp": 0,
+          "truth_labels": 240
+        },
+        "MICRO_ALL": {
+          "f1": 0.48303393213572854,
+          "fn": 608,
+          "fp": 428,
+          "precision": 0.5307017543859649,
+          "recall": 0.4432234432234432,
+          "tp": 484,
+          "truth_labels": 1092
+        },
+        "OMISSION": {
+          "f1": 0.5803921568627451,
+          "fn": 0,
+          "fp": 428,
+          "precision": 0.4088397790055249,
+          "recall": 1.0,
+          "tp": 296,
+          "truth_labels": 296
+        },
+        "ORDER_INVERSION": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 188,
+          "truth_labels": 188
+        },
+        "PHANTOM_COMPLETION": {
+          "f1": 0.0,
+          "fn": 368,
+          "fp": 0,
+          "precision": null,
+          "recall": 0.0,
+          "tp": 0,
+          "truth_labels": 368
+        }
+      }
+    },
+    "simple_procedure_check": {
+      "channels": [
+        "DIGITAL",
+        "PHYSICAL"
+      ],
+      "description": "Transparent required-steps-present + monotonic-order checker; no cross-channel reasoning.",
+      "display_name": "Simple procedure-check baseline",
+      "metrics": {
+        "conformant_cases": 208,
+        "conformant_false_alarms": 0,
+        "exact_set_accuracy": 0.5666666666666667,
+        "fnr_violated": 0.45320197044334976,
+        "fpr_conformant": 0.0,
+        "fpr_violation_free": 0.0,
+        "ground_truth_uncertain_rate": 0.15,
+        "label_miss_rate": 0.5567765567765568,
+        "macro_f1": 0.5,
+        "macro_f1_types_counted": 4,
+        "micro_f1": 0.6142131979695431,
+        "status_accuracy": 0.5433333333333333,
+        "total_cases": 1200,
+        "uncertain_rate": 0.0,
+        "violated_cases": 812,
+        "violated_missed_entirely": 368,
+        "violation_free_cases": 388,
+        "violation_free_false_alarms": 0
+      },
+      "per_violation_type": {
+        "CHANNEL_CONTRADICTION": {
+          "f1": 0.0,
+          "fn": 240,
+          "fp": 0,
+          "precision": null,
+          "recall": 0.0,
+          "tp": 0,
+          "truth_labels": 240
+        },
+        "MICRO_ALL": {
+          "f1": 0.6142131979695431,
+          "fn": 608,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 0.4432234432234432,
+          "tp": 484,
+          "truth_labels": 1092
+        },
+        "OMISSION": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 296,
+          "truth_labels": 296
+        },
+        "ORDER_INVERSION": {
+          "f1": 1.0,
+          "fn": 0,
+          "fp": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "tp": 188,
+          "truth_labels": 188
+        },
+        "PHANTOM_COMPLETION": {
+          "f1": 0.0,
+          "fn": 368,
+          "fp": 0,
+          "precision": null,
+          "recall": 0.0,
+          "tp": 0,
+          "truth_labels": 368
+        }
+      }
+    }
+  }
+}

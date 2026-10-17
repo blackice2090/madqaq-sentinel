@@ -11,7 +11,7 @@ from pathlib import Path
 from sentinel.evaluation.runner import EvaluationResult
 from sentinel.evaluation.schema import VIOLATION_TYPES
 from sentinel.evaluation.statements import (
-    ABLATION_SCOPE, CI_SCOPE, DEV_STATUS, KNOWN_LIMITATION, KNOWN_LIMITATION_NOTE, LATENCY_SCOPE, SYNTHETIC_SCOPE,
+    ABLATION_SCOPE, CI_SCOPE, DEV_STATUS, FINAL_STATUS, KNOWN_LIMITATION, LATENCY_LABEL, KNOWN_LIMITATION_NOTE, LATENCY_SCOPE, SYNTHETIC_SCOPE,
 )
 
 SYSTEM_ORDER = ("full_dual_channel", "physical_only_ablation", "digital_only_ablation", "simple_procedure_check")
@@ -138,7 +138,8 @@ def render_report(summary: dict, latency: dict | None = None) -> str:
     A("")
     A("## Scope and disclaimers")
     A("")
-    for text in (SYNTHETIC_SCOPE, ABLATION_SCOPE, CI_SCOPE, LATENCY_SCOPE, DEV_STATUS):
+    is_final = bm["split"] == "final"
+    for text in (SYNTHETIC_SCOPE, ABLATION_SCOPE, CI_SCOPE, LATENCY_SCOPE, FINAL_STATUS if is_final else DEV_STATUS):
         A(f"- {text}")
     A("- No claim is made about camera accuracy, field accuracy, deployment readiness, real digital-system integration "
       "or superiority over any external system.")
@@ -301,6 +302,8 @@ def render_report(summary: dict, latency: dict | None = None) -> str:
     else:
         A("Latency was not measured in this run.")
     A("")
+    A(f"**{LATENCY_LABEL}**")
+    A("")
 
     A("## Results by scenario family (exact violation-set match rate)")
     A("")
@@ -323,7 +326,9 @@ def render_report(summary: dict, latency: dict | None = None) -> str:
         "The weak-observation families depend on the benchmark's definition that a performed-but-weakly-observed step is not a fault; other defensible definitions exist.",
         "The ablations reuse the same engine code with one channel removed, so they measure each channel's contribution, not alternative designs. The simple baseline is one possible simple checker.",
         "Bootstrap intervals assume cases are independent draws from this benchmark's designer-chosen composition and say nothing about field performance.",
-        "These are development-split results: the development benchmark was visible during implementation. The frozen FINAL split has not been evaluated.",
+        ("These are FINAL-split results from a single frozen run; the weak-observation limitation above was accepted before the run and is not reinterpreted here."
+         if is_final else
+         "These are development-split results: the development benchmark was visible during implementation. The frozen FINAL split has not been evaluated."),
         "Latency is machine-specific and measures engine evaluation only.",
     ):
         A(f"- {text}")
@@ -331,7 +336,8 @@ def render_report(summary: dict, latency: dict | None = None) -> str:
     A("## Reproduction")
     A("")
     A("```")
-    A("python -m apps.evaluation.main run --split dev")
+    A(f"python -m apps.evaluation.main run --split {bm['split']}" if not is_final else
+      "python -m apps.evaluation.main evaluate --split final --unlock-final-evaluation")
     A("```")
     A("")
     return "\n".join(lines)

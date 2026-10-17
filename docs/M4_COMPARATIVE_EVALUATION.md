@@ -163,6 +163,7 @@ Details: in `weak_physical_midjourney` a performed step is seen only below the 0
 - Ablations reuse the same engine code, so they measure channel contribution, not alternative designs; the simple baseline is one possible simple checker.
 - Bootstrap intervals assume cases are independent draws from a designer-chosen composition.
 - Development results only; the development set was visible during implementation.
+- The FINAL split is independently seeded but is generated from the same procedural distribution and composition design as the development split. It is therefore a frozen held-out synthetic benchmark, not an out-of-distribution or real-world validation set.
 - Latency is machine-specific.
 
 ## 12. Reproduce
