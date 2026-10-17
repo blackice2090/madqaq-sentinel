@@ -24,8 +24,9 @@ WINDOW = "MADQAQ Sentinel - M1 Live Physical Perception"
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
 
-def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    p = argparse.ArgumentParser(prog="python -m apps.vision_demo.main", description=__doc__.split("\n")[0])
+def parse_args(argv: list[str] | None = None, prog: str = "python -m apps.vision_demo.main",
+               description: str | None = None) -> argparse.Namespace:
+    p = argparse.ArgumentParser(prog=prog, description=description or __doc__.split("\n")[0])
     p.add_argument("--camera", type=int, default=0, help="webcam index (default 0)")
     p.add_argument("--model", default=DEFAULT_MODEL, help=f"Ultralytics person model (default {DEFAULT_MODEL})")
     p.add_argument("--zones", default=DEFAULT_ZONES_PATH, help=f"zone config JSON (default {DEFAULT_ZONES_PATH})")

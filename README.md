@@ -63,6 +63,19 @@ python -m apps.vision_demo.main            # Q/ESC quit, R reset
 
 Details: [M1 Live Vision](docs/M1_LIVE_VISION.md)
 
+## M2 — Dual-Channel Integration (prototype)
+
+M2 fuses the live physical channel (M1) with an independent digital channel through the existing, unchanged M0 engine, so the verdict can change when the second channel arrives (for example UNCERTAIN to COMPLETED, or OMISSION to PHANTOM_COMPLETION).
+
+**The M2 digital channel is a local simulator used to demonstrate cross-channel conformance logic. It is not an integration with a production checkpoint system.** Simulated digital events are labeled as such on screen and in their metadata. Field accuracy and comparative performance are not established.
+
+```bash
+python -m apps.dual_channel_demo.main --confidence 0.50
+# keys: 1 digital A,B,C,D | 2 digital A,C,D | 3 digital with B failed | 0 clear digital | R reset | Q quit
+```
+
+Details: [M2 Dual-Channel Integration](docs/M2_DUAL_CHANNEL.md)
+
 ## Scope boundary
 
-M0 does not include live camera input, detection, tracking, ReID, face recognition, production integrations, or benchmark claims. M1 (above) adds live camera input, detection and temporary tracking only; ReID, face recognition, digital evidence, production integrations and benchmark claims remain out of scope.
+M0 does not include live camera input, detection, tracking, ReID, face recognition, production integrations, or benchmark claims. M1 (above) adds live camera input, detection and temporary tracking only. M2 adds a simulated digital channel and cross-channel fusion only. ReID, face recognition, real digital-system integrations, production deployment and benchmark claims remain out of scope.

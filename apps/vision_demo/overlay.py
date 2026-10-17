@@ -38,7 +38,7 @@ def _wrap(cv2: Any, text: str, max_w: int, scale: float, thick: int = 1) -> list
 
 
 def draw_scene(cv2: Any, frame: Any, zones: ZoneSet, result: FrameResult, debug: bool = False,
-               focus_tracker_id: int | None = None) -> None:
+               focus_tracker_id: int | None = None, subtitle: str = "Live Physical Perception - M1") -> None:
     h, w = frame.shape[:2]
     active = {p.zone_id for p in result.persons if p.zone_id}
     layer = frame.copy()
@@ -70,7 +70,7 @@ def draw_scene(cv2: Any, frame: Any, zones: ZoneSet, result: FrameResult, debug:
     # header, top-left
     cv2.rectangle(frame, (0, 0), (330, 52), GREEN, -1)
     _text(cv2, frame, "MADQAQ Sentinel", (10, 22), 0.7, CREAM, 2)
-    _text(cv2, frame, "Live Physical Perception - M1", (10, 42), 0.5, ORANGE)
+    _text(cv2, frame, subtitle, (10, 42), 0.5, ORANGE)
 
 
 def draw_panel(cv2: Any, np: Any, height: int, summary: JourneySummary | None, zones: ZoneSet, notice: str = "") -> Any:
