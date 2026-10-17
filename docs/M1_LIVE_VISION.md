@@ -110,7 +110,7 @@ M0 is not modified to make the demo look better.
 ## Limitations
 
 - Dwell and smoothing add latency, and a fast pass through a zone shorter than the dwell time is not registered.
-- Prototype only: no accuracy, latency, or comparative benchmark has been measured.
+- Prototype only: no live-camera accuracy or end-to-end latency benchmark has been measured for M1. M4 separately evaluates deterministic procedure-integrity reasoning on synthetic event sequences; those results are not measurements of the M1 camera pipeline.
 - Single camera, single flat view; rectangular zones only; the ground point is a 2D image-plane proxy, not a calibrated floor position.
 - Occlusion, crowding or a lost track can produce a new tracker ID. A new ID only starts a journey in Zone A, so a person re-acquired mid-procedure is not tracked.
 - Lighting, camera angle and partial bodies (for example a seated person) affect detection and the ground point.

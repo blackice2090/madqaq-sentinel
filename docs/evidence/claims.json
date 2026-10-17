@@ -1,0 +1,903 @@
+{
+  "registry_version": "m5.1",
+  "milestone": "M5 Evidence Freeze",
+  "frozen_evidence_dir": "docs/evaluation/final",
+  "benchmark_sha256": "28a3979e7e690cb0957502237f9145a24d816182196179788eaeae8738d48697",
+  "positioning": "research prototype / working proof of concept / finalist demonstration prototype",
+  "claims": [
+    {
+      "claim_id": "C001",
+      "category": "benchmark",
+      "status": "VERIFIED",
+      "numerical": true,
+      "claim": "The frozen final benchmark contains 1,200 procedurally generated synthetic journeys.",
+      "evidence": "Archived final summary and manifest: n_cases 1200, seed 20261123, generator mgen-1.0, dataset SHA-256 28a3979e...8697.",
+      "evidence_source": [
+        "docs/evaluation/final/summary.json#benchmark.n_cases",
+        "docs/evaluation/final/manifest.json#dataset_sha256",
+        "docs/evaluation/final/FINAL_RUN_RECORD.json#case_count"
+      ],
+      "evidence_scope": "Synthetic journeys produced by a seeded procedural generator; ground truth comes from an independent oracle over a latent world, not from the engine.",
+      "verification_type": "archived frozen result",
+      "allowed_wording": [
+        "The frozen final benchmark has 1,200 procedurally generated synthetic journeys.",
+        "1,200 frozen synthetic journeys."
+      ],
+      "prohibited_wording": [
+        "tested on 1,200 real passengers",
+        "validated on 1,200 checkpoint operations"
+      ],
+      "limitations": "Synthetic data only; no real passengers, cameras or checkpoint operations are involved.",
+      "numeric_checks": [
+        {
+          "kind": "json",
+          "file": "summary.json",
+          "path": "benchmark.n_cases",
+          "expected": 1200
+        },
+        {
+          "kind": "json",
+          "file": "summary.json",
+          "path": "benchmark.seed",
+          "expected": 20261123
+        },
+        {
+          "kind": "json",
+          "file": "FINAL_RUN_RECORD.json",
+          "path": "case_count",
+          "expected": 1200
+        },
+        {
+          "kind": "json",
+          "file": "summary.json",
+          "path": "systems.full_dual_channel.metrics.total_cases",
+          "expected": 1200
+        }
+      ]
+    },
+    {
+      "claim_id": "C002",
+      "category": "headline_metric",
+      "status": "VERIFIED_WITH_SCOPE",
+      "numerical": true,
+      "claim": "On the frozen 1,200-journey synthetic benchmark the full dual-channel system achieved 95.0% exact violation-set accuracy.",
+      "evidence": "Archived system_comparison.csv full_dual_channel exact_set_accuracy = 0.95 (95% bootstrap CI 0.9375-0.9625).",
+      "evidence_source": [
+        "docs/evaluation/final/system_comparison.csv#full_dual_channel.exact_set_accuracy",
+        "docs/evaluation/final/summary.json#systems.full_dual_channel.metrics.exact_set_accuracy"
+      ],
+      "evidence_scope": "Frozen synthetic benchmark only. Exact match means the predicted violation-label set equals the oracle set; supersets or subsets do not match.",
+      "verification_type": "archived frozen result",
+      "allowed_wording": [
+        "On a frozen 1,200-journey synthetic benchmark, the full dual-channel system achieved 95.0% exact violation-set accuracy.",
+        "95.0% exact violation-set accuracy (frozen synthetic benchmark)."
+      ],
+      "prohibited_wording": [
+        "95% system accuracy",
+        "95% camera accuracy",
+        "95% real-world accuracy"
+      ],
+      "limitations": "Not a camera, field or real-world accuracy. The 5.0% of non-matching journeys are the 60 weak-physical-evidence cases (see C009).",
+      "numeric_checks": [
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "full_dual_channel"
+          },
+          "field": "exact_set_accuracy",
+          "expected": 0.95,
+          "tol": 1e-09
+        },
+        {
+          "kind": "json",
+          "file": "summary.json",
+          "path": "systems.full_dual_channel.metrics.exact_set_accuracy",
+          "expected": 0.95,
+          "tol": 1e-09
+        },
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "full_dual_channel"
+          },
+          "field": "exact_set_ci_low",
+          "expected": 0.9375,
+          "tol": 1e-06
+        },
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "full_dual_channel"
+          },
+          "field": "exact_set_ci_high",
+          "expected": 0.9625,
+          "tol": 1e-06
+        }
+      ],
+      "required_text": [
+        "synthetic"
+      ]
+    },
+    {
+      "claim_id": "C003",
+      "category": "headline_metric",
+      "status": "VERIFIED_WITH_SCOPE",
+      "numerical": true,
+      "claim": "On the frozen synthetic benchmark the full dual-channel system achieved a Macro-F1 of 0.981 (95% bootstrap CI 0.976-0.986).",
+      "evidence": "Archived macro_f1 0.981156; percentile bootstrap CI [0.976081, 0.985872] (2000 resamples, seed 20261017).",
+      "evidence_source": [
+        "docs/evaluation/final/system_comparison.csv#full_dual_channel.macro_f1",
+        "docs/evaluation/final/summary.json#bootstrap.intervals.full_dual_channel.macro_f1"
+      ],
+      "evidence_scope": "Frozen synthetic benchmark; Macro-F1 is the mean of per-violation-type F1 over the four violation types. The CI is a statistical interval over this synthetic sample, not a field interval.",
+      "verification_type": "archived frozen result",
+      "allowed_wording": [
+        "Macro-F1 of 0.981 [95% bootstrap CI 0.976-0.986] on the frozen synthetic benchmark.",
+        "0.981 Macro-F1 (frozen synthetic benchmark)."
+      ],
+      "prohibited_wording": [
+        "98.1% accuracy",
+        "98.1% detection accuracy"
+      ],
+      "limitations": "Macro-F1 is an F1 score, not accuracy. Synthetic benchmark only.",
+      "numeric_checks": [
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "full_dual_channel"
+          },
+          "field": "macro_f1",
+          "expected": 0.981156,
+          "tol": 1e-06
+        },
+        {
+          "kind": "json",
+          "file": "summary.json",
+          "path": "bootstrap.intervals.full_dual_channel.macro_f1.point",
+          "expected": 0.981156,
+          "tol": 1e-06
+        },
+        {
+          "kind": "json",
+          "file": "summary.json",
+          "path": "bootstrap.intervals.full_dual_channel.macro_f1.ci_low",
+          "expected": 0.976081,
+          "tol": 1e-06
+        },
+        {
+          "kind": "json",
+          "file": "summary.json",
+          "path": "bootstrap.intervals.full_dual_channel.macro_f1.ci_high",
+          "expected": 0.985872,
+          "tol": 1e-06
+        },
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "full_dual_channel"
+          },
+          "field": "macro_f1_ci_low",
+          "expected": 0.976081,
+          "tol": 1e-06
+        },
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "full_dual_channel"
+          },
+          "field": "macro_f1_ci_high",
+          "expected": 0.985872,
+          "tol": 1e-06
+        }
+      ],
+      "required_text": [
+        "Macro-F1"
+      ]
+    },
+    {
+      "claim_id": "C004",
+      "category": "headline_metric",
+      "status": "VERIFIED_WITH_SCOPE",
+      "numerical": true,
+      "claim": "On the frozen synthetic benchmark the full dual-channel system achieved a Micro-F1 of 0.973.",
+      "evidence": "Archived micro_f1 0.973262 (MICRO_ALL: 1092 true positives, 60 false positives, 0 false negatives).",
+      "evidence_source": [
+        "docs/evaluation/final/system_comparison.csv#full_dual_channel.micro_f1",
+        "docs/evaluation/final/per_class_metrics.csv#full_dual_channel.MICRO_ALL"
+      ],
+      "evidence_scope": "Frozen synthetic benchmark; micro-averaged over all TYPE:STEP labels.",
+      "verification_type": "archived frozen result",
+      "allowed_wording": [
+        "Micro-F1 of 0.973 on the frozen synthetic benchmark."
+      ],
+      "prohibited_wording": [
+        "97.3% accuracy"
+      ],
+      "limitations": "F1 score, not accuracy; synthetic benchmark only.",
+      "numeric_checks": [
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "full_dual_channel"
+          },
+          "field": "micro_f1",
+          "expected": 0.973262,
+          "tol": 1e-06
+        },
+        {
+          "kind": "json",
+          "file": "summary.json",
+          "path": "systems.full_dual_channel.metrics.micro_f1",
+          "expected": 0.973262,
+          "tol": 1e-06
+        },
+        {
+          "kind": "csv",
+          "file": "per_class_metrics.csv",
+          "where": {
+            "system_id": "full_dual_channel",
+            "violation_type": "MICRO_ALL"
+          },
+          "field": "f1",
+          "expected": 0.973262,
+          "tol": 1e-06
+        }
+      ]
+    },
+    {
+      "claim_id": "C005",
+      "category": "headline_metric",
+      "status": "VERIFIED_WITH_SCOPE",
+      "numerical": true,
+      "claim": "On the frozen synthetic benchmark the full dual-channel system raised an alarm for every one of the 812 violated journeys (0 of 812 without an alarm).",
+      "evidence": "Archived violated_missed_entirely 0, violated_cases 812, fnr_violated 0.0 for full_dual_channel.",
+      "evidence_source": [
+        "docs/evaluation/final/system_comparison.csv#full_dual_channel.violated_missed_entirely",
+        "docs/evaluation/final/system_comparison.csv#full_dual_channel.violated_cases",
+        "docs/evaluation/final/summary.json#systems.full_dual_channel.metrics"
+      ],
+      "evidence_scope": "Frozen synthetic benchmark. 'Alarm' means at least one violation label was raised on a journey whose oracle status is VIOLATED.",
+      "verification_type": "archived frozen result",
+      "allowed_wording": [
+        "The full dual-channel system flagged all 812 violated journeys in the frozen synthetic benchmark (0 of 812 without an alarm).",
+        "0 / 812 violated journeys without an alarm."
+      ],
+      "prohibited_wording": [
+        "100% of real security violations are detected",
+        "100% detection rate in the field"
+      ],
+      "limitations": "Says nothing about real violations. The same system also raised 60 false phantom-completion alarms on violation-free journeys (C009).",
+      "numeric_checks": [
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "full_dual_channel"
+          },
+          "field": "violated_missed_entirely",
+          "expected": 0,
+          "tol": 0
+        },
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "full_dual_channel"
+          },
+          "field": "violated_cases",
+          "expected": 812,
+          "tol": 0
+        },
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "full_dual_channel"
+          },
+          "field": "fnr_violated",
+          "expected": 0.0,
+          "tol": 1e-12
+        },
+        {
+          "kind": "json",
+          "file": "summary.json",
+          "path": "systems.full_dual_channel.metrics.violated_missed_entirely",
+          "expected": 0,
+          "tol": 0
+        },
+        {
+          "kind": "json",
+          "file": "summary.json",
+          "path": "systems.full_dual_channel.metrics.violated_cases",
+          "expected": 812,
+          "tol": 0
+        }
+      ],
+      "required_text": [
+        "812"
+      ]
+    },
+    {
+      "claim_id": "C006",
+      "category": "per_class",
+      "status": "VERIFIED_WITH_SCOPE",
+      "numerical": true,
+      "claim": "On the frozen synthetic benchmark, phantom completion detection had recall 1.000 and precision 0.860 (F1 0.925).",
+      "evidence": "Archived per-class row PHANTOM_COMPLETION: truth 368, tp 368, fp 60, fn 0, precision 0.859813, recall 1.0, F1 0.924623.",
+      "evidence_source": [
+        "docs/evaluation/final/per_class_metrics.csv#full_dual_channel.PHANTOM_COMPLETION"
+      ],
+      "evidence_scope": "Frozen synthetic benchmark. The 60 false positives are the weak-physical-evidence cases described in C009.",
+      "verification_type": "archived frozen result",
+      "allowed_wording": [
+        "On the frozen synthetic benchmark, phantom completion recall was 1.000 and precision 0.860 (F1 0.925)."
+      ],
+      "prohibited_wording": [
+        "perfect phantom-completion detection"
+      ],
+      "limitations": "Precision is below 1 because of 60 false alarms; do not describe this class as perfect.",
+      "numeric_checks": [
+        {
+          "kind": "csv",
+          "file": "per_class_metrics.csv",
+          "where": {
+            "system_id": "full_dual_channel",
+            "violation_type": "PHANTOM_COMPLETION"
+          },
+          "field": "recall",
+          "expected": 1.0,
+          "tol": 1e-09
+        },
+        {
+          "kind": "csv",
+          "file": "per_class_metrics.csv",
+          "where": {
+            "system_id": "full_dual_channel",
+            "violation_type": "PHANTOM_COMPLETION"
+          },
+          "field": "precision",
+          "expected": 0.859813,
+          "tol": 1e-06
+        },
+        {
+          "kind": "csv",
+          "file": "per_class_metrics.csv",
+          "where": {
+            "system_id": "full_dual_channel",
+            "violation_type": "PHANTOM_COMPLETION"
+          },
+          "field": "f1",
+          "expected": 0.924623,
+          "tol": 1e-06
+        },
+        {
+          "kind": "csv",
+          "file": "per_class_metrics.csv",
+          "where": {
+            "system_id": "full_dual_channel",
+            "violation_type": "PHANTOM_COMPLETION"
+          },
+          "field": "fp",
+          "expected": 60,
+          "tol": 0
+        },
+        {
+          "kind": "csv",
+          "file": "per_class_metrics.csv",
+          "where": {
+            "system_id": "full_dual_channel",
+            "violation_type": "PHANTOM_COMPLETION"
+          },
+          "field": "tp",
+          "expected": 368,
+          "tol": 0
+        }
+      ],
+      "required_text": [
+        "synthetic"
+      ]
+    },
+    {
+      "claim_id": "C007",
+      "category": "per_class",
+      "status": "VERIFIED_WITH_SCOPE",
+      "numerical": true,
+      "claim": "Within the frozen synthetic benchmark, channel contradiction detection had precision, recall and F1 of 1.000 / 1.000 / 1.000.",
+      "evidence": "Archived per-class row CHANNEL_CONTRADICTION: truth 240, tp 240, fp 0, fn 0.",
+      "evidence_source": [
+        "docs/evaluation/final/per_class_metrics.csv#full_dual_channel.CHANNEL_CONTRADICTION"
+      ],
+      "evidence_scope": "Frozen synthetic benchmark only; scope must always be stated alongside the figure.",
+      "verification_type": "archived frozen result",
+      "allowed_wording": [
+        "Within the frozen synthetic benchmark, channel contradiction was detected with precision, recall and F1 of 1.000."
+      ],
+      "prohibited_wording": [
+        "perfect contradiction detection in practice",
+        "channel contradictions are always detected"
+      ],
+      "limitations": "Generated contradiction patterns are clean by construction; real inconsistency patterns may differ.",
+      "numeric_checks": [
+        {
+          "kind": "csv",
+          "file": "per_class_metrics.csv",
+          "where": {
+            "system_id": "full_dual_channel",
+            "violation_type": "CHANNEL_CONTRADICTION"
+          },
+          "field": "precision",
+          "expected": 1.0,
+          "tol": 1e-09
+        },
+        {
+          "kind": "csv",
+          "file": "per_class_metrics.csv",
+          "where": {
+            "system_id": "full_dual_channel",
+            "violation_type": "CHANNEL_CONTRADICTION"
+          },
+          "field": "recall",
+          "expected": 1.0,
+          "tol": 1e-09
+        },
+        {
+          "kind": "csv",
+          "file": "per_class_metrics.csv",
+          "where": {
+            "system_id": "full_dual_channel",
+            "violation_type": "CHANNEL_CONTRADICTION"
+          },
+          "field": "f1",
+          "expected": 1.0,
+          "tol": 1e-09
+        }
+      ],
+      "required_text": [
+        "synthetic"
+      ]
+    },
+    {
+      "claim_id": "C008",
+      "category": "comparative",
+      "status": "VERIFIED_WITH_SCOPE",
+      "numerical": true,
+      "claim": "Cross-channel reasoning enabled detection of phantom completion and channel contradiction that the single-channel ablations and the simple procedure check did not identify.",
+      "evidence": "Archived per-class rows: physical-only, digital-only and simple-check have recall 0.0 for PHANTOM_COMPLETION (368 missed) and CHANNEL_CONTRADICTION (240 missed); the full system has recall 1.0 for both.",
+      "evidence_source": [
+        "docs/evaluation/final/per_class_metrics.csv#PHANTOM_COMPLETION",
+        "docs/evaluation/final/per_class_metrics.csv#CHANNEL_CONTRADICTION",
+        "docs/evaluation/final/summary.json#cross_channel_benefit_by_type"
+      ],
+      "evidence_scope": "Frozen synthetic benchmark. Physical-only and digital-only are INTERNAL ABLATIONS of the same engine, not products or competitors. The simple check is a documented rule-based baseline written for this evaluation.",
+      "verification_type": "archived frozen result",
+      "allowed_wording": [
+        "In the frozen synthetic benchmark, only the dual-channel configuration detected phantom completion and channel contradiction; the internal single-channel ablations and the simple check did not.",
+        "Internal ablations show the value of cross-channel reasoning."
+      ],
+      "prohibited_wording": [
+        "MADQAQ beats all competing systems",
+        "outperforms all",
+        "outperforms existing systems",
+        "proves superiority"
+      ],
+      "limitations": "No external or commercial system was evaluated. Those two violation types are definitionally cross-channel, so single-channel systems cannot detect them by design.",
+      "numeric_checks": [
+        {
+          "kind": "csv",
+          "file": "per_class_metrics.csv",
+          "where": {
+            "system_id": "physical_only_ablation",
+            "violation_type": "PHANTOM_COMPLETION"
+          },
+          "field": "recall",
+          "expected": 0.0,
+          "tol": 1e-12
+        },
+        {
+          "kind": "csv",
+          "file": "per_class_metrics.csv",
+          "where": {
+            "system_id": "digital_only_ablation",
+            "violation_type": "PHANTOM_COMPLETION"
+          },
+          "field": "recall",
+          "expected": 0.0,
+          "tol": 1e-12
+        },
+        {
+          "kind": "csv",
+          "file": "per_class_metrics.csv",
+          "where": {
+            "system_id": "simple_procedure_check",
+            "violation_type": "PHANTOM_COMPLETION"
+          },
+          "field": "recall",
+          "expected": 0.0,
+          "tol": 1e-12
+        },
+        {
+          "kind": "csv",
+          "file": "per_class_metrics.csv",
+          "where": {
+            "system_id": "physical_only_ablation",
+            "violation_type": "CHANNEL_CONTRADICTION"
+          },
+          "field": "recall",
+          "expected": 0.0,
+          "tol": 1e-12
+        },
+        {
+          "kind": "csv",
+          "file": "per_class_metrics.csv",
+          "where": {
+            "system_id": "digital_only_ablation",
+            "violation_type": "CHANNEL_CONTRADICTION"
+          },
+          "field": "recall",
+          "expected": 0.0,
+          "tol": 1e-12
+        },
+        {
+          "kind": "csv",
+          "file": "per_class_metrics.csv",
+          "where": {
+            "system_id": "simple_procedure_check",
+            "violation_type": "CHANNEL_CONTRADICTION"
+          },
+          "field": "recall",
+          "expected": 0.0,
+          "tol": 1e-12
+        },
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "physical_only_ablation"
+          },
+          "field": "exact_set_accuracy",
+          "expected": 0.516667,
+          "tol": 1e-06
+        },
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "digital_only_ablation"
+          },
+          "field": "exact_set_accuracy",
+          "expected": 0.566667,
+          "tol": 1e-06
+        },
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "simple_procedure_check"
+          },
+          "field": "exact_set_accuracy",
+          "expected": 0.566667,
+          "tol": 1e-06
+        },
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "physical_only_ablation"
+          },
+          "field": "macro_f1",
+          "expected": 0.395098,
+          "tol": 1e-06
+        },
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "digital_only_ablation"
+          },
+          "field": "macro_f1",
+          "expected": 0.439501,
+          "tol": 1e-06
+        },
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "simple_procedure_check"
+          },
+          "field": "macro_f1",
+          "expected": 0.5,
+          "tol": 1e-06
+        },
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "physical_only_ablation"
+          },
+          "field": "violated_missed_entirely",
+          "expected": 140,
+          "tol": 0
+        },
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "digital_only_ablation"
+          },
+          "field": "violated_missed_entirely",
+          "expected": 231,
+          "tol": 0
+        },
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "simple_procedure_check"
+          },
+          "field": "violated_missed_entirely",
+          "expected": 368,
+          "tol": 0
+        }
+      ],
+      "required_text": [
+        "ABLATION"
+      ]
+    },
+    {
+      "claim_id": "C009",
+      "category": "limitation",
+      "status": "LIMITATION",
+      "numerical": true,
+      "claim": "The primary known benchmark limitation is weak physical evidence: 60 low-confidence cases produced false phantom-completion alerts.",
+      "evidence": "Archived PHANTOM_COMPLETION fp = 60; family weak_physical_midjourney: 60 cases, 0 exact matches, 60 false-positive labels. The engine treats a sub-threshold physical observation as absent and raises PHANTOM_COMPLETION where the oracle expects UNCERTAIN. fpr_violation_free 0.154639 (60/388).",
+      "evidence_source": [
+        "docs/evaluation/final/per_class_metrics.csv#full_dual_channel.PHANTOM_COMPLETION.fp",
+        "docs/evaluation/final/family_breakdown.csv#weak_physical_midjourney",
+        "docs/evaluation/final/README.md",
+        "docs/M4_COMPARATIVE_EVALUATION.md#10"
+      ],
+      "evidence_scope": "Frozen synthetic benchmark. Disclosed after the development run; no engine or oracle change was made.",
+      "verification_type": "archived frozen result",
+      "allowed_wording": [
+        "The primary known benchmark limitation is weak physical evidence: 60 low-confidence cases produced false phantom-completion alerts.",
+        "This reflects conservative evidence handling and has not been validated as an operationally optimal policy."
+      ],
+      "prohibited_wording": [
+        "no false alarms",
+        "no known limitations",
+        "zero false positives"
+      ],
+      "limitations": "Reflects conservative evidence handling; not validated as an operationally optimal policy. Future work: a calibrated treatment of sub-threshold physical evidence.",
+      "numeric_checks": [
+        {
+          "kind": "csv",
+          "file": "per_class_metrics.csv",
+          "where": {
+            "system_id": "full_dual_channel",
+            "violation_type": "PHANTOM_COMPLETION"
+          },
+          "field": "fp",
+          "expected": 60,
+          "tol": 0
+        },
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "full_dual_channel"
+          },
+          "field": "fpr_violation_free",
+          "expected": 0.154639,
+          "tol": 1e-06
+        },
+        {
+          "kind": "text",
+          "file": "family_breakdown.csv",
+          "contains": "weak_physical_midjourney"
+        }
+      ],
+      "required_text": [
+        "60",
+        "low-confidence",
+        "conservative evidence handling",
+        "not been validated as an operationally optimal policy"
+      ]
+    },
+    {
+      "claim_id": "C010",
+      "category": "live_demonstration",
+      "status": "DEMONSTRATED",
+      "numerical": false,
+      "claim": "The current prototype can convert live camera observations into temporary physical procedure events.",
+      "evidence": "M1 live pipeline (person detector, tracker, zone logic, event emitter) demonstrated on a webcam; unit tests cover zone and event logic without a camera.",
+      "evidence_source": [
+        "docs/M1_LIVE_VISION.md",
+        "tests/vision/"
+      ],
+      "evidence_scope": "Live demonstration of the pipeline. No accuracy, latency or field figure is claimed for it.",
+      "verification_type": "live demonstration and unit tests",
+      "allowed_wording": [
+        "The prototype converts live camera observations into temporary physical procedure events."
+      ],
+      "prohibited_wording": [
+        "The vision system is 95% accurate",
+        "Validated camera performance",
+        "validated vision accuracy"
+      ],
+      "limitations": "No camera accuracy has been measured. The 95.0% figure is NOT a vision metric.",
+      "numeric_checks": [],
+      "required_text": []
+    },
+    {
+      "claim_id": "C011",
+      "category": "live_demonstration",
+      "status": "DEMONSTRATED",
+      "numerical": false,
+      "claim": "The prototype demonstrates live physical evidence combined with a SIMULATED DIGITAL CHANNEL.",
+      "evidence": "M2 dual-channel coordinator with a local digital event simulator (metadata source m2_digital_simulator, simulated true); shown on the M3 dashboard as SIMULATED DIGITAL CHANNEL.",
+      "evidence_source": [
+        "docs/M2_DUAL_CHANNEL.md",
+        "docs/M3_FINALIST_DEMO.md"
+      ],
+      "evidence_scope": "Demonstration of cross-channel logic with a local simulator.",
+      "verification_type": "live demonstration and unit tests",
+      "allowed_wording": [
+        "Live physical evidence combined with a SIMULATED DIGITAL CHANNEL.",
+        "The digital channel is a local simulator."
+      ],
+      "prohibited_wording": [
+        "real government checkpoint database",
+        "production border systems integration",
+        "connected to a live checkpoint system",
+        "integrated with government systems"
+      ],
+      "limitations": "No integration with any real checkpoint, credential or border system exists.",
+      "numeric_checks": [],
+      "required_text": [
+        "SIMULATED DIGITAL CHANNEL"
+      ]
+    },
+    {
+      "claim_id": "C012",
+      "category": "design_property",
+      "status": "DEMONSTRATED",
+      "numerical": false,
+      "claim": "The current prototype uses temporary journey tracking and does not require face recognition or persistent identity.",
+      "evidence": "Design and code: only a temporary tracker ID and a random journey UUID held in memory; no face detection, embeddings or identity fields; frames are processed in memory.",
+      "evidence_source": [
+        "docs/M1_LIVE_VISION.md#privacy-design",
+        "docs/M3_FINALIST_DEMO.md#privacy-design"
+      ],
+      "evidence_scope": "Current prototype design. This is a design property, not a certified privacy or security guarantee.",
+      "verification_type": "design property and code review",
+      "allowed_wording": [
+        "The prototype uses temporary journey tracking and does not require face recognition or persistent identity."
+      ],
+      "prohibited_wording": [
+        "guarantees privacy",
+        "completely anonymous",
+        "privacy-proof",
+        "cannot be misused"
+      ],
+      "limitations": "No formal privacy assessment has been performed. Deployment would need its own privacy and legal review.",
+      "numeric_checks": [],
+      "required_text": []
+    },
+    {
+      "claim_id": "C013",
+      "category": "performance",
+      "status": "VERIFIED_WITH_SCOPE",
+      "numerical": true,
+      "claim": "Deterministic engine evaluation required tens of microseconds per case in the recorded benchmark environment (ENGINE EVALUATION ONLY).",
+      "evidence": "Archived final report latency table, full system: median 23.5 us, P95 48.5 us, P99 69.5 us over 6000 samples, measured in a sandbox (Python 3.12, Intel i7-10750H, 2 CPUs).",
+      "evidence_source": [
+        "docs/evaluation/final/report.md#latency",
+        "docs/evaluation/final/FINAL_RUN_RECORD.json#environment"
+      ],
+      "evidence_scope": "ENGINE EVALUATION ONLY: evidence already present as domain events. Excludes camera capture, YOLO inference, tracking, UI rendering and any external-system latency. Environment-specific.",
+      "verification_type": "archived frozen result",
+      "allowed_wording": [
+        "ENGINE EVALUATION ONLY: deterministic engine evaluation required tens of microseconds per case in the recorded benchmark environment."
+      ],
+      "prohibited_wording": [
+        "system latency",
+        "camera latency",
+        "end-to-end latency",
+        "real-time guarantee"
+      ],
+      "limitations": "Measured once in a sandbox. Not a system, camera or end-to-end figure.",
+      "numeric_checks": [
+        {
+          "kind": "text",
+          "file": "report.md",
+          "contains": "| MADQAQ full dual-channel | 6000 | 23.5 | 48.5 | 69.5 |"
+        },
+        {
+          "kind": "text",
+          "file": "report.md",
+          "contains": "Engine evaluation latency only"
+        }
+      ],
+      "required_text": [
+        "ENGINE EVALUATION ONLY"
+      ]
+    },
+    {
+      "claim_id": "C014",
+      "category": "reproducibility",
+      "status": "VERIFIED_WITH_SCOPE",
+      "numerical": true,
+      "claim": "The frozen final split reproduced the development benchmark's overall full-system metrics closely.",
+      "evidence": "Development run (300 journeys, seed 20261017): exact-set accuracy 0.950, Macro-F1 0.981156, Micro-F1 0.973262, PHANTOM_COMPLETION precision 0.859813. Final run: 0.950, 0.981156, 0.973262, 0.859813. Dev point estimates are from the local, regenerable dev run (not archived in docs/).",
+      "evidence_source": [
+        "docs/evaluation/final/system_comparison.csv#full_dual_channel",
+        "docs/M4_COMPARATIVE_EVALUATION.md#5",
+        "docs/evaluation/final/README.md"
+      ],
+      "evidence_scope": "The final split is independently seeded but is generated from the same procedural distribution and composition design as the development split. It is a frozen held-out synthetic benchmark, not an out-of-distribution or real-world validation set.",
+      "verification_type": "archived frozen result and descriptive comparison",
+      "allowed_wording": [
+        "The frozen final split, independently seeded but generated from the same procedural distribution and composition design, reproduced the development benchmark's overall full-system metrics closely."
+      ],
+      "prohibited_wording": [
+        "independent real-world validation",
+        "out-of-distribution validation",
+        "statistically significant"
+      ],
+      "limitations": "Descriptive comparison only; no significance test was run. Agreement is expected because both splits share a generator design.",
+      "numeric_checks": [
+        {
+          "kind": "csv",
+          "file": "system_comparison.csv",
+          "where": {
+            "system_id": "full_dual_channel"
+          },
+          "field": "exact_set_accuracy",
+          "expected": 0.95,
+          "tol": 1e-09
+        }
+      ],
+      "required_text": [
+        "same procedural distribution",
+        "composition design"
+      ]
+    },
+    {
+      "claim_id": "C015",
+      "category": "readiness",
+      "status": "NOT_SUPPORTED",
+      "numerical": false,
+      "claim": "Production readiness, field validation and operational deployment readiness are NOT supported by the evidence.",
+      "evidence": "No field trial, no real checkpoint integration, no measured camera accuracy, synthetic benchmark only.",
+      "evidence_source": [
+        "docs/evaluation/final/README.md",
+        "docs/M4_COMPARATIVE_EVALUATION.md"
+      ],
+      "evidence_scope": "Applies to every material in the finalist package.",
+      "verification_type": "absence of evidence (explicitly not claimed)",
+      "allowed_wording": [
+        "research prototype",
+        "working proof of concept",
+        "finalist demonstration prototype"
+      ],
+      "prohibited_wording": [
+        "production ready",
+        "production-ready",
+        "field validated",
+        "deployment ready",
+        "government approved",
+        "operationally proven"
+      ],
+      "limitations": "Position the work as a research prototype, a working proof of concept and a finalist demonstration prototype.",
+      "numeric_checks": [],
+      "required_text": []
+    }
+  ]
+}

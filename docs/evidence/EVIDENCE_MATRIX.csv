@@ -1,0 +1,16 @@
+claim_id,short_claim,evidence_type,source_file,source_field_or_section,scope,safe_for_poster,safe_for_pitch,safe_for_demo,limitations
+C001,"1,200 frozen synthetic journeys",archived result,docs/evaluation/final/summary.json,benchmark.n_cases,synthetic procedurally generated,yes,yes,yes,Synthetic; no real passengers
+C002,95.0% exact violation-set accuracy,archived result,docs/evaluation/final/system_comparison.csv,full_dual_channel.exact_set_accuracy,frozen synthetic benchmark,yes,yes,yes,Not camera or real-world accuracy
+C003,Macro-F1 0.981 (CI 0.976-0.986),archived result,docs/evaluation/final/summary.json,bootstrap.intervals.full_dual_channel.macro_f1,frozen synthetic benchmark,yes,yes,yes,F1 not accuracy
+C004,Micro-F1 0.973,archived result,docs/evaluation/final/per_class_metrics.csv,full_dual_channel.MICRO_ALL.f1,frozen synthetic benchmark,no,yes,yes,F1 not accuracy
+C005,0 of 812 violated journeys without an alarm,archived result,docs/evaluation/final/system_comparison.csv,full_dual_channel.violated_missed_entirely / violated_cases,frozen synthetic benchmark,yes,yes,yes,Not field detection rate; 60 false phantom alarms (C009)
+C006,Phantom completion recall 1.000 precision 0.860,archived result,docs/evaluation/final/per_class_metrics.csv,full_dual_channel.PHANTOM_COMPLETION,frozen synthetic benchmark,no,yes,yes,Precision reduced by 60 false positives
+C007,Channel contradiction P/R/F1 1.000,archived result,docs/evaluation/final/per_class_metrics.csv,full_dual_channel.CHANNEL_CONTRADICTION,frozen synthetic benchmark; scope always stated,no,yes,yes,Clean synthetic patterns
+C008,Cross-channel reasoning detected types single-channel ablations missed,archived result,docs/evaluation/final/per_class_metrics.csv,PHANTOM_COMPLETION and CHANNEL_CONTRADICTION recall by system,internal ablations; synthetic benchmark,yes,yes,yes,No external systems evaluated
+C009,60 low-confidence cases caused false phantom alerts,archived result,docs/evaluation/final/family_breakdown.csv,weak_physical_midjourney,frozen synthetic benchmark,yes,yes,yes,Conservative handling; not validated as optimal
+C010,Live camera observations become temporary physical events,live demonstration,docs/M1_LIVE_VISION.md,Architecture / Privacy design,live demo; no accuracy figure,yes,yes,yes,No camera accuracy measured
+C011,Live physical evidence plus SIMULATED DIGITAL CHANNEL,live demonstration,docs/M2_DUAL_CHANNEL.md,Digital simulator,local simulator,yes,yes,yes,No real integration
+C012,Temporary journey tracking; no face recognition or persistent identity,design property,docs/M1_LIVE_VISION.md,Privacy design,current prototype design,yes,yes,yes,Not a certified privacy guarantee
+C013,Engine evaluation tens of microseconds per case,archived result,docs/evaluation/final/report.md,Latency table (Engine evaluation latency only),ENGINE EVALUATION ONLY; sandbox,no,yes,yes,"Not system, camera or end-to-end latency"
+C014,Final split reproduced development full-system metrics closely,archived result,docs/evaluation/final/README.md,Held-out synthetic limitation,same procedural distribution and composition design,no,yes,no,Not independent real-world validation
+C015,Production readiness not supported,absence of evidence,docs/evaluation/final/README.md,Scope statements,applies to all materials,no,no,no,Research prototype only

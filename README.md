@@ -101,10 +101,23 @@ python -m apps.evaluation.main generate --split final   # frozen final manifest;
 - Procedurally generated benchmark (300 development journeys, 1200 final), ground truth from an independent oracle - never from the conformance engine.
 - Systems: full dual-channel engine, physical-only ablation, digital-only ablation, simple procedure-check baseline.
 - Multi-label metrics, paired bootstrap intervals, and engine-evaluation latency (not end-to-end).
-- Evaluating the final split is locked in M4.1.
+- The FINAL benchmark was evaluated once in M4.2. Its results are frozen and archived under `docs/evaluation/final/`.
 
 This benchmark uses procedurally generated synthetic event sequences. It evaluates deterministic procedure-integrity reasoning, not live-camera accuracy or field performance. The physical-only and digital-only systems are internal ablations, not external commercial baselines. See [docs/M4_COMPARATIVE_EVALUATION.md](docs/M4_COMPARATIVE_EVALUATION.md).
 
+## M5 — Evidence freeze
+
+M5 adds no algorithm and no new result. It fixes one authoritative set of claims, each tied to the archived frozen M4.2 evaluation, with allowed and forbidden wording. Research prototype; synthetic benchmark; SIMULATED DIGITAL CHANNEL.
+
+- [Claims registry](docs/evidence/CLAIMS_REGISTRY.md) (machine-readable: `docs/evidence/claims.json`)
+- [Finalist claims cheatsheet](docs/evidence/FINALIST_CLAIMS_CHEATSHEET.md)
+- [Judge Q&A](docs/evidence/JUDGE_QA.md)
+- [Poster metrics](docs/evidence/POSTER_METRICS.md)
+- [Presentation results slide](docs/evidence/PRESENTATION_RESULTS.md)
+- [Evidence matrix](docs/evidence/EVIDENCE_MATRIX.csv)
+
+Read-only consistency check: `python -m apps.evidence.main check`
+
 ## Scope boundary
 
-M0 does not include live camera input, detection, tracking, ReID, face recognition, production integrations, or benchmark claims. M1 (above) adds live camera input, detection and temporary tracking only. M2 adds a simulated digital channel and cross-channel fusion only. ReID, face recognition, real digital-system integrations, production deployment and benchmark claims remain out of scope.
+M0 does not include live camera input, detection, tracking, ReID, face recognition or production integrations. M0 itself makes no benchmark-performance claims. Comparative synthetic benchmark claims were introduced later in M4 and remain explicitly scoped to deterministic procedure-integrity reasoning. M1 (above) adds live camera input, detection and temporary tracking only. M2 adds a simulated digital channel and cross-channel fusion only. ReID, face recognition, real digital-system integrations, and production deployment remain out of scope.
