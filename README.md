@@ -47,6 +47,22 @@ python -m simulator.run_scenario uncertain_b
 uvicorn apps.api.main:app --reload
 ```
 
+## M1 — Live Physical Perception (prototype)
+
+M1 adds a webcam-based physical-perception pipeline (person detection, temporary tracking, virtual zones A/B/C/D) that emits PHYSICAL `NormalizedEvent`s into the existing, unchanged M0 conformance engine.
+
+**M1 is a live physical-perception prototype. Field accuracy and comparative performance are not yet established.** The M0 results above remain synthetic-sequence results and do not describe M1.
+
+- No face recognition, biometric identity, persistent re-identification, or cloud processing. Only temporary tracker IDs and random in-memory journey IDs.
+- Physical evidence alone is single-channel: a full `A → B → C → D` walk is reported as `UNCERTAIN` (awaiting digital confirmation), not as confirmed. Skipping B (`A → C → D`) can produce a step-specific `OMISSION` of B.
+
+```bash
+pip install -e ".[dev,vision]"
+python -m apps.vision_demo.main            # Q/ESC quit, R reset
+```
+
+Details: [M1 Live Vision](docs/M1_LIVE_VISION.md)
+
 ## Scope boundary
 
-M0 does not include live camera input, detection, tracking, ReID, face recognition, production integrations, or benchmark claims.
+M0 does not include live camera input, detection, tracking, ReID, face recognition, production integrations, or benchmark claims. M1 (above) adds live camera input, detection and temporary tracking only; ReID, face recognition, digital evidence, production integrations and benchmark claims remain out of scope.

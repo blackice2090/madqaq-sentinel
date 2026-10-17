@@ -8,3 +8,8 @@ venv/
 *.sqlite
 *.sqlite3
 .DS_Store
+# Model weights are downloaded locally by Ultralytics; never commit them
+*.pt
+*.onnx
+*.egg-info/
+build/
