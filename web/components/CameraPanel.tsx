@@ -22,7 +22,6 @@ interface Props {
   detections: Detection[];
   showDetections: boolean;
   trackingLine: string;
-  framesNote: string;
 }
 
 export function CameraPanel(p: Props) {
@@ -80,9 +79,9 @@ export function CameraPanel(p: Props) {
   }, [box, media, active, p.zones, p.activeZone, p.detections, p.showDetections]);
 
   return (
-    <section className="flex min-h-0 flex-col rounded-xl border border-line bg-forest-deep">
-      <header className="flex items-center justify-between gap-3 px-4 py-2.5 text-cream">
-        <h2 className="text-[0.8rem] font-bold uppercase tracking-[0.14em]">Live Camera</h2>
+    <section aria-label="Live camera" className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-xl bg-forest-deep">
+      <header className="flex items-center justify-between gap-3 px-4 py-2 text-cream">
+        <h2 className="text-xs font-semibold uppercase tracking-[0.16em] text-cream/80">Live camera</h2>
         <div className="flex items-center gap-2">
           {active ? (
             <button type="button" onClick={p.onStop}
@@ -98,10 +97,15 @@ export function CameraPanel(p: Props) {
           )}
         </div>
       </header>
-      <div ref={boxRef} className="relative aspect-video w-full min-h-[240px] overflow-hidden bg-black">
+      <div ref={boxRef} className="relative min-h-[140px] w-full flex-1 overflow-hidden bg-black">
         <video ref={videoRef} muted playsInline autoPlay
           className={`absolute inset-0 h-full w-full object-contain ${SAMPLING.mirror ? "-scale-x-100" : ""} ${active ? "" : "invisible"}`} />
         <canvas ref={canvasRef} className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden />
+        {active && (
+          <span className="absolute bottom-3 left-3 rounded-md bg-forest-deep/80 px-2.5 py-1 text-sm font-semibold text-cream">
+            {p.trackingLine}
+          </span>
+        )}
         {!active && (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center text-cream">
             {p.cameraStatus === "error" ? <TriangleAlert aria-hidden className="size-10 text-ember" /> : <CameraOff aria-hidden className="size-10 text-cream/60" />}
@@ -115,10 +119,6 @@ export function CameraPanel(p: Props) {
           </div>
         )}
       </div>
-      <footer className="flex flex-wrap items-center justify-between gap-2 px-4 py-2 text-sm text-cream/85">
-        <span className="font-semibold">{active ? p.trackingLine : "No person tracked"}</span>
-        <span className="text-xs text-cream/65">{p.framesNote}</span>
-      </footer>
     </section>
   );
 }

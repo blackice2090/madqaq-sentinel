@@ -31,7 +31,7 @@ export function analysisSize(videoW: number, videoH: number, maxWidth: number): 
   return { width: Math.max(1, Math.round(videoW * scale)), height: Math.max(1, Math.round(videoH * scale)) };
 }
 
-const C = { forest: "#0E3F3C", cream: "#F7F1E7", ember: "#D9784A", ink: "#0B1F1E" };
+const C = { cream: "#F5F1E8", ember: "#D9784A", ink: "#18312F" };
 
 export interface OverlayInput {
   zones: Zone[];
@@ -42,42 +42,34 @@ export interface OverlayInput {
 
 /** Draws in CSS pixels; the caller sets the device-pixel-ratio transform. */
 export function drawOverlay(ctx: CanvasRenderingContext2D, rect: Rect, input: OverlayInput): void {
-  const font = Math.max(12, Math.round(rect.h / 30));
+  const font = Math.max(15, Math.round(rect.h / 22));
   ctx.lineJoin = "round";
   for (const z of input.zones) {
     const r = mapBox(zoneBox(z), rect);
     const active = z.zone_id === input.activeZone;
-    ctx.fillStyle = active ? "rgba(217,120,74,0.20)" : "rgba(14,63,60,0.14)";
+    ctx.fillStyle = active ? "rgba(217,120,74,0.22)" : "rgba(245,241,232,0.05)";
     ctx.fillRect(r.x, r.y, r.w, r.h);
-    ctx.setLineDash(active ? [] : [8, 6]);
-    ctx.lineWidth = active ? 4 : 2;
-    ctx.strokeStyle = active ? C.ember : "rgba(247,241,231,0.85)";
+    ctx.setLineDash(active ? [] : [10, 7]);
+    ctx.lineWidth = active ? 5 : 2;
+    ctx.strokeStyle = active ? C.ember : "rgba(245,241,232,0.6)";
     ctx.strokeRect(r.x, r.y, r.w, r.h);
     ctx.setLineDash([]);
-    const label = active ? `${z.zone_id} ${z.name} · ACTIVE` : `${z.zone_id} ${z.name}`;
-    ctx.font = `600 ${font}px ui-sans-serif, system-ui, sans-serif`;
-    const tw = ctx.measureText(label).width;
-    const pad = font * 0.4;
-    ctx.fillStyle = active ? C.ember : "rgba(14,63,60,0.88)";
-    ctx.fillRect(r.x + 4, r.y + 4, Math.min(tw + pad * 2, r.w - 8), font + pad * 1.4);
+    const label = `${z.zone_id}  ${z.name}`;
+    ctx.font = `700 ${font}px ui-sans-serif, system-ui, sans-serif`;
+    const pad = font * 0.5;
+    const bw = Math.min(ctx.measureText(label).width + pad * 2, r.w - 8);
+    ctx.fillStyle = active ? C.ember : "rgba(8,45,43,0.82)";
+    ctx.fillRect(r.x + 4, r.y + 4, bw, font + pad * 1.4);
     ctx.fillStyle = active ? C.ink : C.cream;
     ctx.textBaseline = "top";
-    ctx.fillText(label, r.x + 4 + pad, r.y + 4 + pad * 0.7, r.w - 8 - pad * 2);
+    ctx.fillText(label, r.x + 4 + pad, r.y + 4 + pad * 0.7, bw - pad * 2);
   }
   if (!input.showDetections) return;
+  // The person box is deliberately thin and unlabelled; ID / zone / confidence live in the panel's status chip.
   for (const d of input.detections) {
     const r = mapBox(d.box, rect);
-    ctx.lineWidth = 3;
-    ctx.strokeStyle = d.in_active_journey ? C.ember : C.cream;
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = d.in_active_journey ? "rgba(245,241,232,0.95)" : "rgba(245,241,232,0.5)";
     ctx.strokeRect(r.x, r.y, r.w, r.h);
-    const label = `ID ${d.tracker_id} · ${d.zone_id ? `Zone ${d.zone_id}` : "outside zones"} · ${d.confidence.toFixed(2)}`;
-    ctx.font = `600 ${font}px ui-sans-serif, system-ui, sans-serif`;
-    const tw = ctx.measureText(label).width;
-    const y = Math.max(rect.y, r.y - font - 10);
-    ctx.fillStyle = "rgba(11,31,30,0.85)";
-    ctx.fillRect(r.x, y, tw + 12, font + 8);
-    ctx.fillStyle = C.cream;
-    ctx.textBaseline = "top";
-    ctx.fillText(label, r.x + 6, y + 4);
   }
 }

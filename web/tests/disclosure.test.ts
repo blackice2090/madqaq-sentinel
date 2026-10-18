@@ -46,10 +46,12 @@ describe("claims hygiene in UI source", () => {
     "no source file contains %j", (phrase) => {
       for (const f of files) expect(readFileSync(f, "utf8").toLowerCase()).not.toContain(phrase);
     });
-  it("the digital panel and controls show the simulated badge", () => {
-    const evidence = readFileSync(path.resolve("components/EvidencePanel.tsx"), "utf8");
-    const controls = readFileSync(path.resolve("components/ControlsPanel.tsx"), "utf8");
-    expect(evidence).toContain("<SimulatedBadge />");
-    expect(controls).toContain("<SimulatedBadge />");
+  it("the evidence tracks and controls drawer show the simulated badge; the footer states it once", () => {
+    const tracks = readFileSync(path.resolve("components/EvidenceTracks.tsx"), "utf8");
+    const controls = readFileSync(path.resolve("components/DemoControlsDrawer.tsx"), "utf8");
+    const footer = readFileSync(path.resolve("components/PrivacyFooter.tsx"), "utf8");
+    expect(tracks).toContain("<SimulatedBadge");
+    expect(controls).toContain("<SimulatedBadge");
+    expect(footer).toContain("Digital channel is simulated for demonstration.");
   });
 });

@@ -1,17 +1,20 @@
 @import "tailwindcss";
 
+@custom-variant snug (@media (max-height: 960px));
+@custom-variant short (@media (max-height: 820px));
+
 @theme {
   --color-forest: #0e3f3c;
-  --color-forest-deep: #0a2e2c;
-  --color-forest-soft: #dfe8e3;
-  --color-cream: #f7f1e7;
-  --color-cream-deep: #ece3d3;
+  --color-forest-deep: #082d2b;
+  --color-forest-soft: #e1ebe6;
+  --color-cream: #f5f1e8;
+  --color-cream-deep: #ece7dd;
   --color-ember: #d9784a;
   --color-ember-deep: #9c4a24;   /* text-safe orange on cream */
-  --color-ember-soft: #f6dccd;
-  --color-ink: #0b1f1e;
-  --color-muted: #55635f;
-  --color-line: #d8cdb9;
+  --color-ember-soft: #f7e0d3;
+  --color-ink: #18312f;
+  --color-muted: #5b6e6b;        /* #697C79 darkened slightly to keep body-size secondary text legible */
+  --color-line: #ddd5c4;
   --font-sans: ui-sans-serif, "Segoe UI", "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
   --font-mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", Consolas, monospace;
 }
@@ -23,6 +26,11 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
+
+:focus-visible { outline: 2px solid var(--color-ember); outline-offset: 2px; }
+
+@keyframes fade-in { from { opacity: 0; transform: translateY(2px); } to { opacity: 1; transform: none; } }
+.fade-in { animation: fade-in 180ms ease-out; }
 
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
