@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from sentinel.conformance.engine import ConformanceEngine
@@ -6,6 +7,14 @@ from sentinel.domain.models import ConformanceResult
 from simulator.scenarios import SCENARIOS, scenario
 
 app = FastAPI(title="MADQAQ Sentinel M0", version="0.1.0")
+
+# M6.1 local web dashboard: localhost frontend origins only (never "*").
+from apps.web_api.config import allowed_origins  # noqa: E402
+from apps.web_api.routes import router as web_router  # noqa: E402
+
+app.add_middleware(CORSMiddleware, allow_origins=list(allowed_origins()), allow_methods=["GET"],
+                   allow_headers=[], allow_credentials=False)
+app.include_router(web_router)
 
 
 @app.get("/health")

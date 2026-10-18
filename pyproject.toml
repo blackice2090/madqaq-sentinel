@@ -17,6 +17,10 @@ vision = [
   "ultralytics>=8.3",
   "pillow>=10.1",
 ]
+# M6.1 local web dashboard: uvicorn needs a WebSocket implementation for /ws/session.
+web = [
+  "websockets>=13",
+]
 
 [tool.setuptools.packages.find]
 include = ["sentinel*", "apps*", "simulator*"]

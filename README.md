@@ -118,6 +118,18 @@ M5 adds no algorithm and no new result. It fixes one authoritative set of claims
 
 Read-only consistency check: `python -m apps.evidence.main check`
 
+## M6.1 — Local web dashboard
+
+A local Next.js version of the finalist dashboard. The browser owns the webcam and displays its own video. Sampled JPEG frames go over a WebSocket to the existing FastAPI app, where each browser session gets its own M1 tracker/zones/event emitter and its own M2 dual-channel coordinator. The browser draws zones and boxes over its local video. M0–M5 logic, results and claims are unchanged. The digital channel is still the **SIMULATED DIGITAL CHANNEL** (local simulator, not a production checkpoint integration). Nothing is deployed, and this is not hardened for Internet use.
+
+```bash
+pip install -e ".[dev,vision,web]"
+python -m uvicorn apps.api.main:app --reload --host 127.0.0.1 --port 8000
+cd web && npm install && npm run dev      # http://localhost:3000
+```
+
+Details: architecture, protocol, privacy and limitations are in [docs/M6_WEB_DASHBOARD.md](docs/M6_WEB_DASHBOARD.md).
+
 ## Scope boundary
 
 M0 does not include live camera input, detection, tracking, ReID, face recognition or production integrations. M0 itself makes no benchmark-performance claims. Comparative synthetic benchmark claims were introduced later in M4 and remain explicitly scoped to deterministic procedure-integrity reasoning. M1 (above) adds live camera input, detection and temporary tracking only. M2 adds a simulated digital channel and cross-channel fusion only. ReID, face recognition, real digital-system integrations, and production deployment remain out of scope.
